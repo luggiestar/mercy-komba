@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.5
+-- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Jan 21, 2022 at 06:07 AM
--- Server version: 10.1.38-MariaDB
--- PHP Version: 7.1.27
+-- Host: localhost
+-- Generation Time: Feb 09, 2022 at 11:12 AM
+-- Server version: 10.4.22-MariaDB
+-- PHP Version: 8.1.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -19,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `vehicle_management`
+-- Database: `kvmcotz_vehicle_management`
 --
 
 -- --------------------------------------------------------
@@ -51,7 +50,7 @@ CREATE TABLE `car_brand` (
   `id` int(11) NOT NULL,
   `brand_name` varchar(200) NOT NULL,
   `added_by` int(11) NOT NULL,
-  `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+  `date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -72,7 +71,7 @@ INSERT INTO `car_brand` (`id`, `brand_name`, `added_by`, `date`) VALUES
 CREATE TABLE `car_capacity` (
   `id` int(11) NOT NULL,
   `car_capacity` varchar(200) NOT NULL,
-  `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `added_by` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -97,7 +96,7 @@ CREATE TABLE `dbo_tbl_leaveapp` (
   `Mon` varchar(2) DEFAULT NULL,
   `Jon` varchar(30) DEFAULT NULL,
   `Codeno` varchar(50) DEFAULT NULL,
-  `FullName` mediumtext,
+  `FullName` mediumtext DEFAULT NULL,
   `Trans_Date` datetime DEFAULT NULL,
   `LeaveType` varchar(50) DEFAULT NULL,
   `LeaveFrom` datetime DEFAULT NULL,
@@ -107,7 +106,7 @@ CREATE TABLE `dbo_tbl_leaveapp` (
   `LeaveAll` double DEFAULT NULL,
   `CashForLeave` double DEFAULT NULL,
   `PlannedNextLeave` datetime DEFAULT NULL,
-  `Comments` mediumtext,
+  `Comments` mediumtext DEFAULT NULL,
   `status` varchar(255) DEFAULT NULL,
   `email` varchar(255) DEFAULT NULL,
   `Dept` varchar(255) DEFAULT NULL,
@@ -143,7 +142,7 @@ CREATE TABLE `driver` (
   `drlicensevalid` date NOT NULL,
   `draddress` varchar(50) NOT NULL,
   `drphoto` varchar(30) NOT NULL,
-  `dr_available` tinyint(4) NOT NULL DEFAULT '1'
+  `dr_available` tinyint(4) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -163,7 +162,7 @@ INSERT INTO `driver` (`driverid`, `drname`, `driverdob`, `drjoin`, `drmobile`, `
 CREATE TABLE `fuel_type` (
   `id` int(11) NOT NULL,
   `fuel_type` varchar(200) NOT NULL,
-  `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `added_by` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -187,15 +186,16 @@ CREATE TABLE `mantainance` (
   `garage` varchar(40) NOT NULL,
   `amount` bigint(20) NOT NULL,
   `description` text NOT NULL,
-  `date_mant` date NOT NULL
+  `date_mant` date NOT NULL,
+  `service` varchar(150) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `mantainance`
 --
 
-INSERT INTO `mantainance` (`mant_id`, `vehicle`, `garage`, `amount`, `description`, `date_mant`) VALUES
-(5, 2, 'Mlimani city', 100, 'Nothing', '2021-07-17');
+INSERT INTO `mantainance` (`mant_id`, `vehicle`, `garage`, `amount`, `description`, `date_mant`, `service`) VALUES
+(9, 2, 'mzumbe', 120000, 'Herro', '2022-02-10', 'change oil,coloring');
 
 -- --------------------------------------------------------
 
@@ -221,6 +221,71 @@ INSERT INTO `route` (`id`, `route_name`, `route_fare`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `tbl_expenditure`
+--
+
+CREATE TABLE `tbl_expenditure` (
+  `exp_id` int(11) NOT NULL,
+  `expenditure_type` int(11) NOT NULL,
+  `expenditure_descrption` text NOT NULL,
+  `expenditure_amount` bigint(20) NOT NULL,
+  `expenditure_date` timestamp NOT NULL DEFAULT current_timestamp(),
+  `user_expenditure` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `tbl_expenditure`
+--
+
+INSERT INTO `tbl_expenditure` (`exp_id`, `expenditure_type`, `expenditure_descrption`, `expenditure_amount`, `expenditure_date`, `user_expenditure`) VALUES
+(1, 1, 'Accident aiseee', 10000, '2022-02-08 22:54:48', 14),
+(2, 2, 'jksjdkjsd', 140000000, '2022-02-09 05:10:35', 14),
+(3, 1, 'Ahahahahha', 1020000, '2022-01-09 05:28:59', 14),
+(4, 1, 'coloring', 324343, '2022-02-09 09:26:47', 14),
+(5, 1, 'change oil,coloring', 1200000, '2022-02-09 09:27:59', 14);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_expenditure_type`
+--
+
+CREATE TABLE `tbl_expenditure_type` (
+  `expenditure_type_id` int(11) NOT NULL,
+  `expenditure_type_name` varchar(100) NOT NULL,
+  `date` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `tbl_expenditure_type`
+--
+
+INSERT INTO `tbl_expenditure_type` (`expenditure_type_id`, `expenditure_type_name`, `date`) VALUES
+(1, 'Maintenance', '2022-02-08 22:42:39'),
+(2, 'New Car', '2022-02-08 22:42:39');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_service`
+--
+
+CREATE TABLE `tbl_service` (
+  `service_id` int(11) NOT NULL,
+  `service_name` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `tbl_service`
+--
+
+INSERT INTO `tbl_service` (`service_id`, `service_name`) VALUES
+(1, 'change oil'),
+(2, 'coloring');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `user`
 --
 
@@ -230,22 +295,18 @@ CREATE TABLE `user` (
   `last_name` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
   `username` varchar(255) NOT NULL,
-  `is_admin` tinyint(4) NOT NULL DEFAULT '0',
-  `is_active` tinyint(4) NOT NULL DEFAULT '1',
-  `password` varchar(255) NOT NULL
+  `is_admin` tinyint(4) NOT NULL DEFAULT 0,
+  `is_active` tinyint(4) NOT NULL DEFAULT 1,
+  `password` varchar(255) NOT NULL,
+  `registred_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `user`
 --
 
-INSERT INTO `user` (`user_id`, `first_name`, `last_name`, `email`, `username`, `is_admin`, `is_active`, `password`) VALUES
-(13, 'dadoooo', 'ahmed', 'fahaha@gmail.com', 'asdasd', 1, 1, 'asdasdad'),
-(14, 'Mercy', 'Komba', 'rakib@gmail.com', 'mercy', 1, 0, '1234'),
-(15, 'amie', 'charles', 'amiefungo@gmail.com', 'amie', 1, 1, 'amie'),
-(17, 'amie', 'charles', 'amiefungo@gmail', 'charlesamie', 0, 1, 'amie2020'),
-(21, 'lugano', 'mwakapuku', 'lumwakapuku@gmail.com', 'luggie', 0, 1, '1122'),
-(22, 'lugano', 'Mwakapuku', 'lumwakapuku@gmail.com', 'luggie', 0, 1, '1122');
+INSERT INTO `user` (`user_id`, `first_name`, `last_name`, `email`, `username`, `is_admin`, `is_active`, `password`, `registred_at`) VALUES
+(14, 'Mercy', 'Komba', 'rakib@gmail.com', 'mercy', 1, 1, '$2y$10$uhoIVVUS0P6WEqpUtNIJOej3.JLCZ61NAyHzDIFHLY9CBshUfPyAi', '2022-01-21 10:46:05');
 
 -- --------------------------------------------------------
 
@@ -260,7 +321,7 @@ CREATE TABLE `vehicle` (
   `chesisno` varchar(100) NOT NULL,
   `brand` int(11) NOT NULL,
   `veh_color` varchar(100) NOT NULL,
-  `veh_regdate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `veh_regdate` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `veh_description` varchar(255) NOT NULL,
   `veh_photo` varchar(255) NOT NULL,
   `veh_available` int(11) NOT NULL,
@@ -275,8 +336,7 @@ CREATE TABLE `vehicle` (
 --
 
 INSERT INTO `vehicle` (`veh_id`, `plate_no`, `veh_type`, `chesisno`, `brand`, `veh_color`, `veh_regdate`, `veh_description`, `veh_photo`, `veh_available`, `no_passengers`, `eng_capacity`, `fuel_type`, `route_name`) VALUES
-(2, 'T 122 DSC', 'COSTA', '3434', 1, 'GREEN', '2021-07-16 10:03:24', 'For my son luggie', 'mulogo.png', 1, 12, 1, 2, 2),
-(3, 'ee33', 'dds', '223', 2, 'blue', '0000-00-00 00:00:00', 'sdasdasd', 'bb.JPG', 1, 12, 2, 1, 1);
+(2, 'T 122 DSC', 'COSTA', '3434', 1, 'GREEN', '2021-07-16 10:03:24', 'For my son luggie', 'mulogo.png', 1, 12, 1, 2, 2);
 
 --
 -- Indexes for dumped tables
@@ -327,6 +387,26 @@ ALTER TABLE `mantainance`
 --
 ALTER TABLE `route`
   ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `tbl_expenditure`
+--
+ALTER TABLE `tbl_expenditure`
+  ADD PRIMARY KEY (`exp_id`),
+  ADD KEY `user_expenditure` (`user_expenditure`),
+  ADD KEY `expenditure_type` (`expenditure_type`);
+
+--
+-- Indexes for table `tbl_expenditure_type`
+--
+ALTER TABLE `tbl_expenditure_type`
+  ADD PRIMARY KEY (`expenditure_type_id`);
+
+--
+-- Indexes for table `tbl_service`
+--
+ALTER TABLE `tbl_service`
+  ADD PRIMARY KEY (`service_id`);
 
 --
 -- Indexes for table `user`
@@ -382,7 +462,7 @@ ALTER TABLE `fuel_type`
 -- AUTO_INCREMENT for table `mantainance`
 --
 ALTER TABLE `mantainance`
-  MODIFY `mant_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `mant_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `route`
@@ -391,10 +471,22 @@ ALTER TABLE `route`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
+-- AUTO_INCREMENT for table `tbl_expenditure`
+--
+ALTER TABLE `tbl_expenditure`
+  MODIFY `exp_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT for table `tbl_service`
+--
+ALTER TABLE `tbl_service`
+  MODIFY `service_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
 -- AUTO_INCREMENT for table `vehicle`
@@ -429,6 +521,13 @@ ALTER TABLE `fuel_type`
 --
 ALTER TABLE `mantainance`
   ADD CONSTRAINT `mntainanceVehicleFK` FOREIGN KEY (`vehicle`) REFERENCES `vehicle` (`veh_id`) ON UPDATE CASCADE;
+
+--
+-- Constraints for table `tbl_expenditure`
+--
+ALTER TABLE `tbl_expenditure`
+  ADD CONSTRAINT `expenditure_type` FOREIGN KEY (`expenditure_type`) REFERENCES `tbl_expenditure_type` (`expenditure_type_id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `user_expenditure` FOREIGN KEY (`user_expenditure`) REFERENCES `user` (`user_id`) ON UPDATE CASCADE;
 
 --
 -- Constraints for table `vehicle`
