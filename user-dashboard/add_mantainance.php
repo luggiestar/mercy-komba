@@ -15,8 +15,8 @@ if (isset($_POST['add_mantainance'])) {
     $array= implode(",", $services);
 
     /* triggure mantainance */
-    $query = "INSERT INTO mantainance(vehicle, garage, amount, description, date_mant, service) 
-                VALUES(:vehicle, :garage, :amount, :description, :date_mant, :service)";
+    $query = "INSERT INTO mantainance(vehicle, garage, amount, description, date_mant) 
+              VALUES(:vehicle, :garage, :amount, :description, :date_mant)";
 
     $query = $dbconnect->prepare($query);
     $query->bindParam(':vehicle', $vehicle, PDO::PARAM_STR);
@@ -24,10 +24,20 @@ if (isset($_POST['add_mantainance'])) {
     $query->bindParam(':amount', $amount, PDO::PARAM_STR);
     $query->bindParam(':description', $description, PDO::PARAM_STR);
     $query->bindParam(':date_mant', $date_mant, PDO::PARAM_STR);
-    $query->bindParam(':service', $array, PDO::PARAM_STR);
 
     $query->execute();
     $lastInsertId = $dbconnect->lastInsertId();
+
+    foreach($services as $value) {
+        $service_sql = "INSERT INTO 
+            tbl_mantainance_service(mantainance, service) 
+            VALUES(:mantainance, :service)";
+
+        $query_service = $dbconnect->prepare($service_sql);
+        $query_service->bindParam(':mantainance', $lastInsertId, PDO::PARAM_STR);
+        $query_service->bindParam(':service', $value, PDO::PARAM_STR);
+        $query_service->execute();
+    }
 
     /* triggure expenditure */
     $expenditure_type = 1;

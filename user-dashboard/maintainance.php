@@ -1,3 +1,4 @@
+<?php $title = "Mantainance" ?>
 <?php include('includes/sidebar.php'); ?>
 <?php include('includes/connection.php'); ?>
 <?php include('../includes/config.php'); ?>
@@ -9,9 +10,9 @@
     WHERE mantainance.vehicle = vehicle.veh_id");
 
 
-    $services = $dbconnect->prepare("SELECT * FROM tbl_service");
-    $services->execute();
-    $services_list = $services->fetchAll(PDO::FETCH_ASSOC);
+    $services_1= $dbconnect->prepare("SELECT * FROM tbl_service");
+    $services_1->execute();
+    $services_list_save = $services_1->fetchAll(PDO::FETCH_ASSOC);
 
     //count vahicle
     $count_v = mysqli_num_rows($mantainance);
@@ -46,16 +47,26 @@
                             <?php
                             $sn = 1;
                             while ($mantainance_row = mysqli_fetch_array($mantainance)) { ?>
-                        
+                            <?php 
+                                $mant_id = $mantainance_row['mant_id'];
+                                $sql = "SELECT * FROM all_service WHERE mantainance = :mant_id";
+                                $stmt_service = $dbconnect->prepare($sql);
+                            
+                                $stmt_service->bindParam(':mant_id', $mant_id, PDO::PARAM_STR);
+                                $stmt_service->execute();
+                                $services_list = $stmt_service->fetchAll(PDO::FETCH_ASSOC);
+                            ?>
                             <tr>
                                 <td><?php echo $sn++ ?></td>
-                                <td><?php echo $mantainance_row['vehicle'] ?></td>
+                                <td><?php echo $mantainance_row['plate_no'] ?></td>
                                 <td><?php echo $mantainance_row['garage'] ?></td>
                                 <td><?php echo $mantainance_row['amount'] ?></td>
                                 <td><?php echo $mantainance_row['date_mant'] ?></td>
                                 <td><?php echo $mantainance_row['description'] ?></td>
                                 <td>
-                                    <?php echo $mantainance_row['service'] ?>   
+                                    <?php foreach($services_list as $services_list_item): ?>
+                                        <span class="badge bg-danger text-white"><?php echo $services_list_item['service_name'] ?></span>
+                                    <?php endforeach ?>   
                                 </td>
                                 <td>
                                     <!-- <button class="btn btn-dark btn-sm btn-circle shadow-sm" data-toggle="modal"

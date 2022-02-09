@@ -36,9 +36,9 @@
                             <input type="date" name="date_mant" id="" class="form-control">
                         </div>
                         <div class="col-xl-12 mt-2">
-                            <?php foreach($services_list as $services_item): ?>
-                                <input class="c-card" type="checkbox" name="service[]" value="<?php echo 
-                                $services_item['service_name'] ?>">  <?php echo $services_item['service_name'] ?> 
+                            <?php foreach($services_list_save as $services_item): ?>
+                                <input class="c-card" type="checkbox" name="service[]" value="<?php echo $services_item['service_id'] ?>">  
+                                <?php echo $services_item['service_name'] ?> 
                             <?php endforeach ?>
                         </div>
                         <div class="col-xl-12 mt-3">

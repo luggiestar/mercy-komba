@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Feb 09, 2022 at 11:12 AM
+-- Generation Time: Feb 09, 2022 at 11:51 PM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.1.1
 
@@ -39,6 +39,17 @@ CREATE TABLE `admin` (
 
 INSERT INTO `admin` (`admin_id`, `username`, `password`) VALUES
 (1, 'mihaf24', '1234');
+
+-- --------------------------------------------------------
+
+--
+-- Stand-in structure for view `all_service`
+-- (See below for the actual view)
+--
+CREATE TABLE `all_service` (
+`service_name` varchar(100)
+,`mantainance` int(11)
+);
 
 -- --------------------------------------------------------
 
@@ -186,16 +197,16 @@ CREATE TABLE `mantainance` (
   `garage` varchar(40) NOT NULL,
   `amount` bigint(20) NOT NULL,
   `description` text NOT NULL,
-  `date_mant` date NOT NULL,
-  `service` varchar(150) NOT NULL
+  `date_mant` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `mantainance`
 --
 
-INSERT INTO `mantainance` (`mant_id`, `vehicle`, `garage`, `amount`, `description`, `date_mant`, `service`) VALUES
-(9, 2, 'mzumbe', 120000, 'Herro', '2022-02-10', 'change oil,coloring');
+INSERT INTO `mantainance` (`mant_id`, `vehicle`, `garage`, `amount`, `description`, `date_mant`) VALUES
+(9, 2, 'mzumbe', 120000, 'Herro', '2022-02-10'),
+(17, 2, 'mzumbe', 120000, 'Test', '2022-02-11');
 
 -- --------------------------------------------------------
 
@@ -242,7 +253,8 @@ INSERT INTO `tbl_expenditure` (`exp_id`, `expenditure_type`, `expenditure_descrp
 (2, 2, 'jksjdkjsd', 140000000, '2022-02-09 05:10:35', 14),
 (3, 1, 'Ahahahahha', 1020000, '2022-01-09 05:28:59', 14),
 (4, 1, 'coloring', 324343, '2022-02-09 09:26:47', 14),
-(5, 1, 'change oil,coloring', 1200000, '2022-02-09 09:27:59', 14);
+(5, 1, 'change oil,coloring', 1200000, '2022-02-09 09:27:59', 14),
+(6, 1, '1,2', 120000, '2022-02-09 22:47:42', 14);
 
 -- --------------------------------------------------------
 
@@ -263,6 +275,41 @@ CREATE TABLE `tbl_expenditure_type` (
 INSERT INTO `tbl_expenditure_type` (`expenditure_type_id`, `expenditure_type_name`, `date`) VALUES
 (1, 'Maintenance', '2022-02-08 22:42:39'),
 (2, 'New Car', '2022-02-08 22:42:39');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_income`
+--
+
+CREATE TABLE `tbl_income` (
+  `income_id` int(11) NOT NULL,
+  `source` int(11) NOT NULL,
+  `amount` bigint(20) NOT NULL,
+  `date` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_mantainance_service`
+--
+
+CREATE TABLE `tbl_mantainance_service` (
+  `mantainance_service_id` int(11) NOT NULL,
+  `mantainance` int(11) NOT NULL,
+  `service` int(11) NOT NULL,
+  `date` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `tbl_mantainance_service`
+--
+
+INSERT INTO `tbl_mantainance_service` (`mantainance_service_id`, `mantainance`, `service`, `date`) VALUES
+(1, 9, 2, '2022-02-09 22:33:42'),
+(2, 17, 1, '2022-02-09 22:47:42'),
+(3, 17, 2, '2022-02-09 22:47:42');
 
 -- --------------------------------------------------------
 
@@ -338,6 +385,15 @@ CREATE TABLE `vehicle` (
 INSERT INTO `vehicle` (`veh_id`, `plate_no`, `veh_type`, `chesisno`, `brand`, `veh_color`, `veh_regdate`, `veh_description`, `veh_photo`, `veh_available`, `no_passengers`, `eng_capacity`, `fuel_type`, `route_name`) VALUES
 (2, 'T 122 DSC', 'COSTA', '3434', 1, 'GREEN', '2021-07-16 10:03:24', 'For my son luggie', 'mulogo.png', 1, 12, 1, 2, 2);
 
+-- --------------------------------------------------------
+
+--
+-- Structure for view `all_service`
+--
+DROP TABLE IF EXISTS `all_service`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `all_service`  AS SELECT `tbl_service`.`service_name` AS `service_name`, `tbl_mantainance_service`.`mantainance` AS `mantainance` FROM ((`tbl_mantainance_service` join `tbl_service`) join `mantainance`) WHERE `tbl_mantainance_service`.`mantainance` = `mantainance`.`mant_id` AND `tbl_mantainance_service`.`service` = `tbl_service`.`service_id` ;
+
 --
 -- Indexes for dumped tables
 --
@@ -403,6 +459,20 @@ ALTER TABLE `tbl_expenditure_type`
   ADD PRIMARY KEY (`expenditure_type_id`);
 
 --
+-- Indexes for table `tbl_income`
+--
+ALTER TABLE `tbl_income`
+  ADD PRIMARY KEY (`income_id`);
+
+--
+-- Indexes for table `tbl_mantainance_service`
+--
+ALTER TABLE `tbl_mantainance_service`
+  ADD PRIMARY KEY (`mantainance_service_id`),
+  ADD KEY `mantainanceFK` (`mantainance`),
+  ADD KEY `serviceFK` (`service`);
+
+--
 -- Indexes for table `tbl_service`
 --
 ALTER TABLE `tbl_service`
@@ -462,7 +532,7 @@ ALTER TABLE `fuel_type`
 -- AUTO_INCREMENT for table `mantainance`
 --
 ALTER TABLE `mantainance`
-  MODIFY `mant_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `mant_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `route`
@@ -474,7 +544,19 @@ ALTER TABLE `route`
 -- AUTO_INCREMENT for table `tbl_expenditure`
 --
 ALTER TABLE `tbl_expenditure`
-  MODIFY `exp_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `exp_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT for table `tbl_income`
+--
+ALTER TABLE `tbl_income`
+  MODIFY `income_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `tbl_mantainance_service`
+--
+ALTER TABLE `tbl_mantainance_service`
+  MODIFY `mantainance_service_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `tbl_service`
@@ -528,6 +610,13 @@ ALTER TABLE `mantainance`
 ALTER TABLE `tbl_expenditure`
   ADD CONSTRAINT `expenditure_type` FOREIGN KEY (`expenditure_type`) REFERENCES `tbl_expenditure_type` (`expenditure_type_id`) ON UPDATE CASCADE,
   ADD CONSTRAINT `user_expenditure` FOREIGN KEY (`user_expenditure`) REFERENCES `user` (`user_id`) ON UPDATE CASCADE;
+
+--
+-- Constraints for table `tbl_mantainance_service`
+--
+ALTER TABLE `tbl_mantainance_service`
+  ADD CONSTRAINT `mantainanceFK` FOREIGN KEY (`mantainance`) REFERENCES `mantainance` (`mant_id`),
+  ADD CONSTRAINT `serviceFK` FOREIGN KEY (`service`) REFERENCES `tbl_service` (`service_id`) ON UPDATE CASCADE;
 
 --
 -- Constraints for table `vehicle`

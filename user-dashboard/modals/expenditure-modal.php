@@ -1,4 +1,4 @@
-<div class="modal fade" id="expenditure" tabindex="-1" role="dialog" aria-labelledby="user" aria-hiden="true">
+<div class="modal fade" id="expenditure-modal" tabindex="-1" role="dialog" aria-labelledby="user" aria-hiden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header bg-success">

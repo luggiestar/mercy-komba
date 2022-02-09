@@ -176,7 +176,7 @@
                         
                         <span>Week Expenditure <?php echo $exipanditure_week_result['amount'] ?></span>
                        
-                        <a data-toggle="modal" data-target="#expenditure"><i class="fa fa-plus text-white"></i> </a>
+                        <a data-toggle="modal" data-target="#expenditure-modal"><i class="fa fa-plus text-white"></i> </a>
                     </div>
                 </div>
                 <div class="card-body">
