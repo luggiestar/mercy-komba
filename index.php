@@ -26,8 +26,21 @@
             color: #202124;
             font-family: roboto,'Noto Sans Myanmar UI',arial,sans-serif;
         }
+        .preloader {
+           position: absolute;
+           top: 0;
+           left: 0;
+           width: 100%;
+           height: 100%;
+           z-index: 9999;
+           background-image: url('assets/img/spinner.gif');
+           background-repeat: no-repeat; 
+           background-color: #FFF;
+           background-position: center;
+        }
     </style>
 <body>
+<div class="preloader"></div>
 <div>
     <div class="container pt-5">
         <div class="row justify-content-center">
@@ -82,7 +95,13 @@
         </div>
     </footer>
 </div>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<script src="assets/js/jquery3-6.js"></script>
+<script type="text/javascript">
+    $(window).on('load', function () {
+       $('.preloader').fadeOut('slow');
+    });
+</script>
 <script src="assets/js/kvm.js"></script>
 </body>
 
