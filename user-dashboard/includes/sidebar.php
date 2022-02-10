@@ -1,5 +1,12 @@
 <?php include('../includes/mustlogin.php') ?>
-<?php $fullname = $_SESSION['FullName']; ?>
+<?php include('includes/config.php') ?>
+<?php  
+    $data = ['user_id'=>$_SESSION['UserID']];
+    $user_profile_detatile_sql = "SELECT * FROM user WHERE user_id = :user_id"; 
+    $user_profile_detatile_query = $dbh->prepare($user_profile_detatile_sql);
+    $user_profile_detatile_query->execute($data);
+    $user_profile_detatile = $user_profile_detatile_query->fetch(); 
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -204,7 +211,7 @@
                         </li>
 
                         <!-- Nav Item - Alerts -->
-                        <li class="nav-item dropdown no-arrow mx-1">
+                        <!-- <li class="nav-item dropdown no-arrow mx-1">
                             <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="fas fa-bell fa-fw"></i>
@@ -252,9 +259,9 @@
                                 </a>
                                 <a class="dropdown-item text-center small text-gray-500" href="#">Show All Alerts</a>
                             </div>
-                        </li>
+                       <!--  </li>  -->
 
-                        <!-- Nav Item - Messages -->
+                        <!-- Nav Item - Messages 
                         <li class="nav-item dropdown no-arrow mx-1">
                             <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -318,7 +325,7 @@
                                 </a>
                                 <a class="dropdown-item text-center small text-gray-500" href="#">Read More Messages</a>
                             </div>
-                        </li>
+                       <!--  </li> -->
 
                         <div class="topbar-divider d-none d-sm-block"></div>
 
@@ -326,7 +333,9 @@
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">username</span>
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">
+                                    <?php echo $user_profile_detatile['username'] ?>
+                                </span>
                                 <img class="img-profile rounded-circle"
                                     src="img/undraw_profile.svg">
                             </a>
