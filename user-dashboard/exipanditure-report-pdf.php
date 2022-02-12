@@ -95,18 +95,9 @@ th {
   text-align: -webkit-match-parent;
 }
 
-.table {
-  width: 100%;
-  margin-bottom: 1rem;
-  color: #212529;
-}
 
-.table th,
-.table td {
-  padding: 0.75rem;
-  vertical-align: top;
-  border-top: 1px solid #dee2e6;
-}
+
+
 
 .table thead th {
   vertical-align: bottom;

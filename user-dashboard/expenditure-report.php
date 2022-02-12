@@ -18,8 +18,8 @@
     <div class="card">
     	<div class="card-body">
     		<div class="d-sm-flex align-items-center justify-content-end mb-4">
-                <button class="d-none d-sm-inline-block btn btn-outline-success btn-sm shadow-sm" data-toggle="modal" data-target="#print-report">
-                   Print Report <i class="fa fa-file-pdf-o fa-sm text-danger"></i> 
+                <button class="d-none d-sm-inline-block btn btn-danger btn-sm shadow-sm" data-toggle="modal" data-target="#print-report">
+                   Print Report <i class="fa fa-file-pdf-o fa-sm text-light"></i> 
                 </button>
             </div>
             <div class="table-responsive">
@@ -64,15 +64,16 @@
 		$("#search_date").click(function() {
 			$("#search_by_date_form").show("slow");
 			$("#search_exipandure_type_form").hide();
-			$("#search_exipendture_type").css({'background-color':'white','color':'black'});
-			$("#search_date").css({'background-color':'green', 'color':'white', 'padding':'6px'});
+			$("#search_exipendture_type").css({'color':'black'});
+            $("#search_date").css({'color':'#04AA6D'});
 		})
 
 		$("#search_exipendture_type").click(function() {
 			$("#search_exipandure_type_form").show("slow");
-			$("#search_date").css({'background-color':'white','color':'black'});
-			$("#search_exipendture_type").css({'background-color':'green', 'color':'white', 'padding':'6px'});
+			$("#search_date").css({'color':'black'});
+			$("#search_exipendture_type").css({'color':'#04AA6D'});
 			$("#search_by_date_form").hide("slow");
+            
 		})
 	});
 </script>

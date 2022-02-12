@@ -22,7 +22,7 @@
                             <input type="date" name="to_date" id="" class="form-control">
                         </div>
                         <div class="col-xl-12 mt-3">
-                            <button type="submit" name="search_by_date" class="btn btn-block vms-btn">Print</button>
+                            <button type="submit" name="search_by_date" class="btn btn-block btn-success">Print <i class="fa fa-print"></i> </button>
                         </div>
                     </div>
                 </form>
@@ -43,7 +43,7 @@
                         </div>
         
                         <div class="col-xl-3">
-                            <button type="submit" name="search_by_type" class="btn btn-block vms-btn">Print</button>
+                            <button type="submit" name="search_by_type" class="btn btn-block btn-success">Print <i class="fa fa-print"></i></button>
                         </div>
                     </div>
                 </form>

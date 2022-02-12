@@ -50,6 +50,12 @@
             background-color: #087429;
             color: whitesmoke;
         }
+        #search_date, #search_exipendture_type {
+            cursor: pointer;
+        }
+        #search_date, #search_exipendture_type:hover {
+            color: #04AA6D;
+        }
 
     </style>
 </head>
