@@ -7,7 +7,7 @@ require_once('includes/tcpdf/tcpdf.php');
 
 include('../includes/config.php');
    
-
+$file_name_pdf = '';
 
 // Extend the TCPDF class to create custom Header and Footer
 class MYPDF extends TCPDF {
@@ -44,7 +44,7 @@ if(isset($_GET['search_by_date'])) {
     }
 
     else {
-        $data = 
+        $file_name_pdf = 'Report From '.$from_date.' to '.$to_date; 
 
         $exipenditure_report = $dbconnect->prepare("SELECT * FROM `exipenditure_report`
         WHERE (expenditure_date BETWEEN :from_date AND :to_date)
@@ -59,8 +59,10 @@ if(isset($_GET['search_by_date'])) {
     }
 }
 else if(isset($_GET['search_by_type'])) {
-    $expenditure_type_name = $_GET['exipandure_type'];
 
+    $expenditure_type_name = stripslashes($_GET['exipandure_type']);
+    $date = date('Y-m-d');
+    $file_name_pdf = 'Report of '.$expenditure_type_name.' on '.$date;
     $exipenditure_report = $dbconnect->prepare("SELECT * FROM `exipenditure_report` 
         WHERE expenditure_type_name = :expenditure_type_name
         ORDER BY expenditure_date ");
@@ -77,28 +79,6 @@ else {
 	echo "Bad access";
 }
 
-//create new PDF document
-$pdf = new MYPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
-
-$pdf->setFooterFont(Array(PDF_FONT_NAME_DATA, '', PDF_FONT_SIZE_DATA));
-
-// set default monospaced font
-$pdf->SetDefaultMonospacedFont(PDF_FONT_MONOSPACED);
-
-// set margins
-$pdf->SetFooterMargin(PDF_MARGIN_FOOTER);
-
-// set auto page breaks
-$pdf->SetAutoPageBreak(TRUE, PDF_MARGIN_BOTTOM);
-
-// set some language-dependent strings (optional)
-if (@file_exists(dirname(__FILE__).'/lang/eng.php')) {
-    require_once(dirname(__FILE__).'/lang/eng.php');
-    $pdf->setLanguageArray($l);
-}
-
-// set font
-$pdf->SetFont('helvetica', 'B', 9);
 
 $tbl = '
 <style>
@@ -185,6 +165,31 @@ img {
 } 
 $tbl.='</table>';
 
+
+
+//create new PDF document
+$pdf = new MYPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
+
+$pdf->setFooterFont(Array(PDF_FONT_NAME_DATA, '', PDF_FONT_SIZE_DATA));
+
+// set default monospaced font
+$pdf->SetDefaultMonospacedFont(PDF_FONT_MONOSPACED);
+
+// set margins
+$pdf->SetFooterMargin(PDF_MARGIN_FOOTER);
+
+// set auto page breaks
+$pdf->SetAutoPageBreak(TRUE, PDF_MARGIN_BOTTOM);
+
+// set some language-dependent strings (optional)
+if (@file_exists(dirname(__FILE__).'/lang/eng.php')) {
+    require_once(dirname(__FILE__).'/lang/eng.php');
+    $pdf->setLanguageArray($l);
+}
+
+// set font
+$pdf->SetFont('helvetica', 12);
+
 // set default header data
 $pdf->SetHeaderData(PDF_HEADER_LOGO, PDF_HEADER_LOGO_WIDTH, PDF_HEADER_TITLE.' 006', PDF_HEADER_STRING);
 
@@ -201,10 +206,11 @@ $pdf->SetHeaderMargin(PDF_MARGIN_HEADER);
 $pdf->SetFooterMargin(PDF_MARGIN_FOOTER);
 
 // add a page
-$pdf->AddPage();
+$pdf->AddPage('L', 'A4');
+
 $pdf->setPrintHeader(false);
 
 $pdf->writeHTML($tbl, true, false, false, false, '');
 
 //Close and output PDF document
-$pdf->Output('example_048.pdf', 'I');
+$pdf->Output($file_name_pdf, 'I');
