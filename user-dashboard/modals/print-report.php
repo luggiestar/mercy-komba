@@ -28,14 +28,14 @@
                 </form>
                
                 
-                <form action="print-expanditure-report.php" method="POST" id="search_exipandure_type_form" enctype="multipart/form-data">
+                <form action="print-expanditure-report.php" method="GET" id="search_exipandure_type_form" enctype="multipart/form-data">
                     <h6 class="mt-3">Search Expenditure Type</h6>
                     <div class="row">
                         <div class="col-xl-9 d-flex">
                              <select name="exipandure_type" class="form-control" required>
                                 <option>---Select Expenditure Type---</option>
                                 <?php foreach($exipanditure_type_list as $ex_type): ?>
-                                    <option value="<?php echo $ex_type['expenditure_type_id'] ?>">
+                                    <option value="<?php echo $ex_type['expenditure_type_name'] ?>">
                                         <?php echo $ex_type['expenditure_type_name'] ?>
                                     </option>
                                 <?php endforeach ?>
