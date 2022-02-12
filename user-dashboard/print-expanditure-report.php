@@ -29,15 +29,16 @@
                 $exipanditure_type_list = $exipanditure_type->fetchAll(PDO::FETCH_ASSOC);
             }
         }
-        else if(isset($_POST['search_by_date'])) {
-            $expenditure_type_name = $_POST['expenditure_type_name'];
+        else if(isset($_GET['search_by_type'])) {
+            $expenditure_type_name = $_GET['exipandure_type'];
+
             $exipenditure_report = $dbconnect->prepare("SELECT * FROM `exipenditure_report` 
                 WHERE expenditure_type_name = :expenditure_type_name
                 ORDER BY expenditure_date ");
 
             $exipenditure_report->execute(['expenditure_type_name'=>$expenditure_type_name]);
             $exipanditure_report_list = $exipenditure_report->fetchAll(PDO::FETCH_ASSOC);
-
+            
             $exipanditure_type = $dbconnect->prepare("SELECT * FROM tbl_expenditure_type");
             $exipanditure_type->execute();
             $exipanditure_type_list = $exipanditure_type->fetchAll(PDO::FETCH_ASSOC);
@@ -53,7 +54,7 @@
                 </button>
             </div>
             <div class="table-responsive">
-                <?php echo $from_date ?>
+                <?php echo  $expenditure_type_name ?>
                 <table class="table table-sm table-striped table-hover dt-responsive display nowrap" id="dataTable" width="100%" cellspacing="0">
                     <thead>
                         <tr>
