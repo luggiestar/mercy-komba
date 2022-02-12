@@ -12,6 +12,11 @@
             AND tbl_expenditure.user_expenditure = user.user_id ");
         $exipanditure->execute();
         $exipanditure_list = $exipanditure->fetchAll(PDO::FETCH_ASSOC);
+
+        $exipanditure_type = $dbconnect->prepare("SELECT * FROM tbl_expenditure_type");
+        $exipanditure_type->execute();
+        $exipanditure_type_list = $exipanditure_type->fetchAll(PDO::FETCH_ASSOC);
+        
     ?>
     <!-- Page Heading -->
     <div class="row animated--grow-in">
