@@ -37,8 +37,10 @@
                         </div>
                         <div class="col-xl-12 mt-2">
                             <?php foreach($services_list_save as $services_item): ?>
-                                <input class="c-card" type="checkbox" name="service[]" value="<?php echo $services_item['service_id'] ?>">  
-                                <?php echo $services_item['service_name'] ?> 
+                                <label class="checkbox">
+                                    <input required type="checkbox" name="service[]" value="<?php echo $services_item['service_id'] ?>">  
+                                    <span><?php echo $services_item['service_name'] ?> </span>
+                                 </label>
                             <?php endforeach ?>
                         </div>
                         <div class="col-xl-12 mt-3">

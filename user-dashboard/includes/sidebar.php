@@ -34,21 +34,29 @@
 
     <style type="text/css">
         .bg {
-            background-color: #087429;
+            background-color: #024e5a;
         }
         .vms-btn {
-            background-color: #087429;
+            background-color: #024e5a;
             color: whitesmoke;
-            transition: ease-in 1s all;
+            transition: ease-in 0.4s all;
         }
         .vms-btn:hover {
-            background-color: #a3111ef7;
+            background-color: #065e6c;
             color: whitesmoke;
         }
 
         .vms-btn:focus {
-            background-color: #087429;
+            background-color: #024e5a;
             color: whitesmoke;
+        }
+
+        .btn-success {
+            background-color: #024e5a;
+        }
+
+        .vms-bg {
+            background-color: #024e5a;
         }
         #search_date, #search_exipendture_type {
             cursor: pointer;
@@ -56,6 +64,65 @@
         #search_date, #search_exipendture_type:hover {
             color: #04AA6D;
         }
+
+        .form-control{
+            border: none;
+            border-radius: 0px;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            border-bottom: 1px solid #024e5a;
+        }
+        .form-control: focus{
+            outline: none;
+            box-shadow: none;
+            border: none;
+            border-radius: 0px;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            border-bottom: 1px solid #024e5a;
+        }
+
+        /*checkbox customization*/
+             .checkbox input {
+            cursor: pointer;
+        }
+
+        .checkbox input[type='checkbox'] {
+            display: none;
+        }
+
+        .checkbox span {
+            background-color: #fff;
+            padding: 10px 30px;
+            color: #024e5a;
+            border-radius: 30px;
+            position: relative;
+            display: inline-block;
+            font-size: 16px;
+            user-select: none;
+            overflow: hidden;
+            transition: 0.5s all;
+            border: 1px solid #024e5a;
+        }
+
+        .checkbox span:hover {
+            background-color: #024e5a;
+            padding: 10px 30px;
+            color: #fff;
+            border-radius: 30px;
+            position: relative;
+            display: inline-block;
+            font-size: 16px;
+            user-select: none;
+            overflow: hidden;
+        }
+
+        .checkbox input[type='checkbox']:checked ~ span {
+            background-color: #024e5a;
+            box-shadow: 0 2px 10px #024e5a;
+            color: #fff;
+        }
+        /*end checkbox customization*/
 
     </style>
 </head>
@@ -66,7 +133,7 @@
     <div id="wrapper">
 
         <!-- Sidebar -->
-        <ul class="navbar-nav bg-success sidebar sidebar-dark accordion" id="accordionSidebar">
+        <ul class="navbar-nav vms-bg sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
@@ -99,10 +166,10 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">User Management:</h6>
                         <a class="collapse-item" href="driver.php"> 
-                            <i class="fa fa-user text-success"></i> Driver
+                            <i class="fa fa-user text-danger"></i> Driver
                         </a>
                         <a class="collapse-item" href="user.php">
-                            <i class="fa fa-user-circle text-success"></i> User
+                            <i class="fa fa-user-circle text-danger"></i> User
                         </a>
                     </div>
                 </div>
@@ -121,20 +188,20 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Vehicles:</h6>
                         <a class="collapse-item" href="vehicle.php">
-                            <i class="fas fa-fw fa-car"></i> vehicle
+                            <i class="fas fa-fw fa-car text-danger"></i> vehicle
                         </a>
                         <a class="collapse-item" href="maintainance.php">
                             <i class="fas fa-fw fa-wrench"></i> Maintainance
                         </a>
                         <h6 class="collapse-header">Car Components:</h6>
                         <a class="collapse-item" href="brand.php">
-                            <i class="fa fa-database"></i> Brand
+                            <i class="fa fa-database text-danger"></i> Brand
                         </a>
                         <a class="collapse-item" href="engine_type.php">
-                            <i class="fa fa-database fa-sm"></i> Engine
+                            <i class="fa fa-database fa-sm text-danger"></i> Engine
                         </a>
                         <a href="fuel_type.php" class="collapse-item">
-                            <i class="fas fa-gas-pump"></i> Fuel type
+                            <i class="fas fa-gas-pump text-danger"></i> Fuel type
                         </a>
                     </div>
                 </div>
@@ -151,10 +218,10 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Expenditure Management:</h6>
                         <a class="collapse-item" href="expenditure.php"> 
-                            <i class="fa fa-money text-success"></i> Expenditures
+                            <i class="fa fa-money text-danger"></i> Expenditures
                         </a>
                         <a class="collapse-item" href="expenditure-type.php">
-                            <i class="fa fa-gears text-success"></i> Expenditure type
+                            <i class="fa fa-gears text-danger"></i> Expenditure type
                         </a>
                         <a class="collapse-item" href="expenditure-report.php">
                             <i class="fa fa-file-pdf-o text-danger"></i> Expenditure Report
