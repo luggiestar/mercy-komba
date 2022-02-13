@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 13, 2022 at 11:51 PM
+-- Generation Time: Feb 12, 2022 at 03:02 PM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.2.33
 
@@ -269,7 +269,12 @@ CREATE TABLE `tbl_expenditure` (
 --
 
 INSERT INTO `tbl_expenditure` (`exp_id`, `expenditure_type`, `expenditure_descrption`, `expenditure_amount`, `expenditure_date`, `user_expenditure`) VALUES
-(7, 2, 'I used to change oil in a car', 100000, '2022-02-13 18:06:41', 14);
+(1, 1, 'Accident aiseee', 10000, '2022-02-08 22:54:48', 14),
+(2, 2, 'jksjdkjsd', 140000000, '2022-02-09 05:10:35', 14),
+(3, 1, 'Ahahahahha', 1020000, '2022-01-09 05:28:59', 14),
+(4, 1, 'coloring', 324343, '2022-02-09 09:26:47', 14),
+(5, 1, 'change oil,coloring', 1200000, '2022-02-09 09:27:59', 14),
+(6, 1, '1,2', 120000, '2022-02-09 22:47:42', 14);
 
 -- --------------------------------------------------------
 
@@ -288,10 +293,9 @@ CREATE TABLE `tbl_expenditure_type` (
 --
 
 INSERT INTO `tbl_expenditure_type` (`expenditure_type_id`, `expenditure_type_name`, `date`) VALUES
-(1, 'loop', '2022-02-13 17:21:07'),
-(2, 'maintainance', '2022-02-13 17:22:05'),
-(3, 'new car', '2022-02-13 17:39:39'),
-(4, 'jumla', '2022-02-13 18:00:03');
+(0, 'Fuel', '2022-02-12 09:35:47'),
+(1, 'Maintenance', '2022-02-08 22:42:39'),
+(2, 'New Car', '2022-02-08 22:42:39');
 
 -- --------------------------------------------------------
 
@@ -305,27 +309,6 @@ CREATE TABLE `tbl_income` (
   `amount` bigint(20) NOT NULL,
   `date` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `tbl_logs`
---
-
-CREATE TABLE `tbl_logs` (
-  `log_id` int(11) NOT NULL,
-  `log_action` varchar(100) NOT NULL,
-  `log_date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
-  `user` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `tbl_logs`
---
-
-INSERT INTO `tbl_logs` (`log_id`, `log_action`, `log_date`, `user`) VALUES
-(1, 'adding new expenditure type', '2022-02-13 17:39:39', 14),
-(2, 'adding new expenditure type', '2022-02-13 18:00:02', 14);
 
 -- --------------------------------------------------------
 
@@ -378,22 +361,20 @@ CREATE TABLE `user` (
   `user_id` int(11) NOT NULL,
   `first_name` varchar(255) NOT NULL,
   `last_name` varchar(255) NOT NULL,
-  `sex` char(1) DEFAULT NULL,
   `email` varchar(255) NOT NULL,
   `username` varchar(255) NOT NULL,
   `is_admin` tinyint(4) NOT NULL DEFAULT 0,
   `is_active` tinyint(4) NOT NULL DEFAULT 1,
   `password` varchar(255) NOT NULL,
-  `registred_at` timestamp NOT NULL DEFAULT current_timestamp(),
-  `profile_picture` varchar(100) DEFAULT NULL
+  `registred_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `user`
 --
 
-INSERT INTO `user` (`user_id`, `first_name`, `last_name`, `sex`, `email`, `username`, `is_admin`, `is_active`, `password`, `registred_at`, `profile_picture`) VALUES
-(14, 'Mercy', 'Komba', 'M', 'rakib@gmail.com', 'mercy', 1, 1, '$2y$10$uhoIVVUS0P6WEqpUtNIJOej3.JLCZ61NAyHzDIFHLY9CBshUfPyAi', '2022-01-21 10:46:05', NULL);
+INSERT INTO `user` (`user_id`, `first_name`, `last_name`, `email`, `username`, `is_admin`, `is_active`, `password`, `registred_at`) VALUES
+(14, 'Mercy', 'Komba', 'rakib@gmail.com', 'mercy', 1, 1, '$2y$10$uhoIVVUS0P6WEqpUtNIJOej3.JLCZ61NAyHzDIFHLY9CBshUfPyAi', '2022-01-21 10:46:05');
 
 -- --------------------------------------------------------
 
@@ -514,13 +495,6 @@ ALTER TABLE `tbl_income`
   ADD PRIMARY KEY (`income_id`);
 
 --
--- Indexes for table `tbl_logs`
---
-ALTER TABLE `tbl_logs`
-  ADD PRIMARY KEY (`log_id`),
-  ADD KEY `userlog` (`user`);
-
---
 -- Indexes for table `tbl_mantainance_service`
 --
 ALTER TABLE `tbl_mantainance_service`
@@ -600,25 +574,13 @@ ALTER TABLE `route`
 -- AUTO_INCREMENT for table `tbl_expenditure`
 --
 ALTER TABLE `tbl_expenditure`
-  MODIFY `exp_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
-
---
--- AUTO_INCREMENT for table `tbl_expenditure_type`
---
-ALTER TABLE `tbl_expenditure_type`
-  MODIFY `expenditure_type_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `exp_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `tbl_income`
 --
 ALTER TABLE `tbl_income`
   MODIFY `income_id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `tbl_logs`
---
-ALTER TABLE `tbl_logs`
-  MODIFY `log_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `tbl_mantainance_service`
@@ -678,12 +640,6 @@ ALTER TABLE `mantainance`
 ALTER TABLE `tbl_expenditure`
   ADD CONSTRAINT `expenditure_type` FOREIGN KEY (`expenditure_type`) REFERENCES `tbl_expenditure_type` (`expenditure_type_id`) ON UPDATE CASCADE,
   ADD CONSTRAINT `user_expenditure` FOREIGN KEY (`user_expenditure`) REFERENCES `user` (`user_id`) ON UPDATE CASCADE;
-
---
--- Constraints for table `tbl_logs`
---
-ALTER TABLE `tbl_logs`
-  ADD CONSTRAINT `userlog` FOREIGN KEY (`user`) REFERENCES `user` (`user_id`);
 
 --
 -- Constraints for table `tbl_mantainance_service`
