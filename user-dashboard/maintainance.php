@@ -17,10 +17,18 @@
     //count vahicle
     $count_v = mysqli_num_rows($mantainance);
     ?>
-
+    <style type="text/css">
+       
+   
+    </style>
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-0 text-gray-800">Mantainance</h1>
+        <label class="checkbox">
+            <input type="checkbox" name="">
+            <span>men</span>
+        </label>
+        
         <button class="d-none d-sm-inline-block btn vms-btn btn-sm shadow-sm" data-toggle="modal"
             data-target="#mantainance">Add New
             Mantainance <i class="fa fa-plus fa-sm"></i> </button>
