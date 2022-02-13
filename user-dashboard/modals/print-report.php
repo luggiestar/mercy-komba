@@ -12,7 +12,7 @@
             <div class="modal-body">
                 <span id="search_date">Search By Date</span> | 
                 <span id="search_exipendture_type"> Search By Exipendture Type</span>
-                <form action="print-expanditure-report.php" class="mt-2" method="GET" id="search_by_date_form" enctype="multipart/form-data">
+                <form action="exipanditure-report-pdf.php" class="mt-2" method="GET" id="search_by_date_form" enctype="multipart/form-data">
                     <div class="row">
                         <div class="col-xl-12">
                             <label class="">From Date</label>
@@ -23,13 +23,13 @@
                             <input type="date" name="to_date" id="" class="form-control">
                         </div>
                         <div class="col-xl-12 mt-3">
-                            <button type="submit" name="search_by_date" class="btn btn-block vms-btn">Print</button>
+                            <button type="submit" name="search_by_date" class="btn btn-block btn-success">Print <i class="fa fa-print"></i> </button>
                         </div>
                     </div>
                 </form>
                
                 
-                <form action="print-expanditure-report.php" method="GET" id="search_exipandure_type_form" enctype="multipart/form-data">
+                <form action="exipanditure-report-pdf.php" method="GET" id="search_exipandure_type_form" enctype="multipart/form-data">
                     <h6 class="mt-3">Search Expenditure Type</h6>
                     <div class="row">
                         <div class="col-xl-9 d-flex">
@@ -44,7 +44,7 @@
                         </div>
         
                         <div class="col-xl-3">
-                            <button type="submit" name="search_by_type" class="btn btn-block vms-btn">Print</button>
+                            <button type="submit" name="search_by_type" class="btn btn-block btn-success">Print <i class="fa fa-print"></i></button>
                         </div>
                     </div>
                 </form>

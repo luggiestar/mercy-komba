@@ -44,7 +44,7 @@ if (isset($_POST['add_mantainance'])) {
     $user_expenditure = $_SESSION['UserID'];
     $data = [
         'expenditure_type'=>$expenditure_type,
-        'expenditure_descrption'=>$array,
+        'expenditure_descrption'=>$description,
         'expenditure_amount'=>$amount,
         'user_expenditure'=>$user_expenditure
     ];
