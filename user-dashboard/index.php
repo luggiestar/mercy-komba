@@ -78,7 +78,10 @@
                             <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
                                 Expenditure per mounth</div>
                             <div class="h5 mb-0 font-weight-bold text-gray-800">
-                                Tsh.<?php echo $exipanditure_sum['amount'] ?>/=</div>
+                                <?php if( $exipanditure_sum['amount'] > 0): ?>
+                                    Tsh.<span class="count"><?php echo $exipanditure_sum['amount'] ?></span>/= 
+                                <?php endif ?>
+                            </div>
                         </div>
                         <div class="col-auto">
                             <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
@@ -98,7 +101,9 @@
                             </div>
                             <div class="row no-gutters align-items-center">
                                 <div class="col-auto">
-                                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800"> <?php echo $user_count ?></div>
+                                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800"> 
+                                        <span class="count"><?php echo $user_count ?></span>
+                                    </div>
                                 </div>
                                 <div class="col">
                                    <!--  <div class="progress progress-sm mr-2">
@@ -123,7 +128,9 @@
                         <div class="col mr-2">
                             <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
                                 Registered User</div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo $count_user ?></div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                <span class="count"><?php echo $count_user ?></span>
+                            </div>
                         </div>
                         <div class="col-auto">
                             <i class="fas fa-user fa-2x text-gray-300"></i>
@@ -202,3 +209,18 @@
 </div>
 <?php include('modals/expenditure-modal.php'); ?>
 <?php include('includes/footer.php'); ?>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('.count').each(function () {
+            $(this).prop('Counter',0).animate({
+                Counter: $(this).text()
+                }, {
+                    duration: 1000,
+                    easing: 'swing',
+                        step: function (now) {
+                            $(this).text(Math.ceil(now));
+                        }
+                });
+            });
+    })
+</script>
