@@ -1,4 +1,4 @@
-<?php $title = "Exipanditure Type" ?>
+<?php $title = "Exipenditure Type" ?>
 
 <?php include('includes/sidebar.php'); ?>
 
