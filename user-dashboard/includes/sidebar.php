@@ -1,4 +1,5 @@
-<?php include('../includes/mustlogin.php') ?>
+<?php require_once('../includes/config.php') ?>
+<?php require_once('../includes/mustlogin.php') ?>
 <?php  
     // $data = ['user_id'=>$_SESSION['UserID']];
     // $user_profile_detatile_sql = "SELECT * FROM user WHERE user_id = :user_id"; 
@@ -15,7 +16,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="Komba Vehicle management system">
     <meta name="author" content="Komba Vehicle management system">
-
+    <link rel="icon" href="../icon.png" type="image/png">
     <title>KVMS | <?PHP echo $title ?></title>
 
     <!-- Custom fonts for this template-->

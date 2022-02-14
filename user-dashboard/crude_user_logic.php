@@ -1,5 +1,4 @@
-<?php include('includes/connection.php');
-session_start();
+<?php include('../includes/connection.php');;
 
 if (isset($_POST['delete_user'])) {
     $id = $_POST['user_id'];

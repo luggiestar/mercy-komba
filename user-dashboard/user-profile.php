@@ -1,6 +1,7 @@
-<?php $title = "User-profile" ?>
+<?php $title = "User-Profile" ?>
+
 <?php include('includes/sidebar.php'); ?>
-<?php include('../includes/config.php') ?>
+
 <?php $sql = "SELECT * FROM user where user_id = :user_id";
   $stmt = $dbconnect->prepare($sql);
   $stmt->execute(['user_id'=>$_SESSION['UserID']]);

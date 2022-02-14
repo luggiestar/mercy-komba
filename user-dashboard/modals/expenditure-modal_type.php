@@ -7,7 +7,7 @@
                     <span aria-hidden="true" class="text-white">&times;</span>
                 </button>
             </div>
-            <form action="exipanditure/new-xipenditure-type.php" method="POST" enctype="multipart/form-data">
+            <form action="exipanditure/new-expenditure-type.php" method="POST" enctype="multipart/form-data">
                 <div class="modal-body">
                     <div class="row mt-3">
                         <div class="col-xl-12">

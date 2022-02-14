@@ -2,10 +2,6 @@
 
 <?php include('includes/sidebar.php'); ?>
 
-<?php include('includes/connection.php');?>
-
-<?php include('../includes/config.php');?>
-
 <?php 
     
     //users

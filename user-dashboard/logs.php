@@ -1,6 +1,5 @@
 <?php $title = "User-logs" ?>
 <?php include('includes/sidebar.php'); ?>
-<?php include('../includes/config.php') ?>
 <?php $sql = "SELECT * FROM tbl_logs where user = :user";
   $stmt = $dbconnect->prepare($sql);
   $stmt->execute(['user'=>$_SESSION['UserID']]);

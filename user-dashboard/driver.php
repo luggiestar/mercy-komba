@@ -2,12 +2,10 @@
 <div class="main_container">
     <?php
 
-    include('includes/connection.php');
+        $diver = mysqli_query($conn, "SELECT * FROM driver");
 
-    $diver = mysqli_query($conn, "SELECT * FROM driver");
-
-    //count vahicle
-    $count_v = mysqli_num_rows($diver);
+        //count vahicle
+        $count_v = mysqli_num_rows($diver);
     ?>
 
     <!-- Page Heading -->

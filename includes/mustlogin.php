@@ -1,9 +1,5 @@
 <?php
-session_start();
-if(empty($_SESSION['UserID']))
-{
-    // header('Location: ../index.php');
-    echo '<script> location.replace("../index.php"); </script>';
-    echo "error";
+if(empty($_SESSION['UserID'])) {
+    echo '<script> location.replace("../logout.php"); </script>';
     exit;
 }

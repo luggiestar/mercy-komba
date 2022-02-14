@@ -2,8 +2,6 @@
 
 <?php include('includes/sidebar.php'); ?>
 
-<?php include('../includes/config.php');?>
-
 <div class="main_container">
  <?php 
         $exipanditure_type = $dbconnect->prepare("SELECT * FROM `tbl_expenditure_type` ORDER BY `tbl_expenditure_type`.`expenditure_type_name` ");

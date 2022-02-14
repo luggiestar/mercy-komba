@@ -1,4 +1,4 @@
-<?php include('includes/connection.php');
+<?php include('../includes/config.php');
 session_start();
 
 if (isset($_POST['delete_vehicle'])) {

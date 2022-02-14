@@ -1,7 +1,5 @@
 <?php $title = "Mantainance" ?>
 <?php include('includes/sidebar.php'); ?>
-<?php include('includes/connection.php'); ?>
-<?php include('../includes/config.php'); ?>
 <div class="main_container">
     <?php 
 
@@ -22,20 +20,23 @@
    
     </style>
     <!-- Page Heading -->
-    <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3 mb-0 text-gray-800">Mantainance</h1>
-        <label class="checkbox">
-            <input type="checkbox" name="">
-            <span>men</span>
-        </label>
-        
-        <button class="d-none d-sm-inline-block btn vms-btn btn-sm shadow-sm" data-toggle="modal"
-            data-target="#mantainance">Add New
-            Mantainance <i class="fa fa-plus fa-sm"></i> </button>
-    </div>
     <div class="row animated--grow-in">
         <div class="col-xl-12">
+          
             <div class="card card-body">
+                <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                    <div></div>
+            
+                    <div class="d-flex">
+                        <button class="d-none d-sm-inline-block  btn vms-btn btn-sm shadow-sm" data-toggle="modal" data-target="#service-modal">
+                            Service <i class="fa fa-plus-circle fa-sm"></i> 
+                        </button>
+
+                        <button class="d-none d-sm-inline-block btn vms-btn btn-sm shadow-sm ml-3" data-toggle="modal" data-target="#mantainance">
+                            Mantainance <i class="fa fa-plus-circle fa-sm"></i>
+                         </button>
+                    </div>
+                </div>
                 <?php include('includes/messages.php'); ?>
                 <div class="table-responsive">
                     <table class="table" id="dataTable" width="100%" cellspacing="0">
@@ -102,3 +103,4 @@
 </div>
 <?php include('includes/footer.php'); ?>
 <?php include('modals/mantainance_modal.php'); ?>
+<?php include('modals/service-modal.php'); ?>

@@ -1,51 +1,40 @@
 <?php
-//for checking error
-ini_set('error_reporting', E_ALL);
-ini_set('display_errors', 'On');  //On or Off
 
-$msg="";
+	session_start();
+	ini_set('display_errors', 1);
+	ini_set('display_startup_errors', 1);
+	error_reporting(E_ALL);  
+	/*
+	online connection
+	define('DB_HOST', 'localhost');
+	define('DB_USER', 'kvmcotz_luggiekomba');
+	define('DB_PASS', 'TIMm%!8^&a2E');
+	define('DB_NAME', 'kvmcotz_vehicle_management');
 
-// DB credentials.
-$host = 'localhost';
-// $user = 'kvmcotz_luggiekomba';
-// $password = 'TIMm%!8^&a2E';
-$user = 'root';
-$password = '';
-$dbname = 'kvmcotz_vehicle_management';
-$mysqli = new mysqli($host, $user, $password, $dbname);
+	*/
 
+	// offline connection
+	define('DB_HOST', 'localhost');
+	define('DB_USER', 'root');
+	define('DB_PASS', '');
+	define('DB_NAME', 'kvmcotz_vehicle_management');
 
-//for checking error
-ini_set('error_reporting', E_ALL);
-ini_set('display_errors', 'On');  //On or Off
-/* make variable constant */
-define('DB_USER', 'root');
-define('DB_PASS', '');
+	// Establish database connection.
+	try {
+	    $dbconnect = new PDO("mysql:host=" . DB_HOST . ";dbname=" . DB_NAME, DB_USER, DB_PASS, array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES 'utf8'"));
+	} 
 
-/* variable hold dbType, bdName and dbHost name*/
-$dbserver = "mysql:host=localhost; dbname=kvmcotz_vehicle_management; charset=UTF8";
+	catch (PDOException $e) {
+	    exit("Error: " . $e->getMessage());
+	}
 
-/*Make Connection to database*/
-try {
-	$dbconnect = new PDO($dbserver, DB_USER, DB_PASS);
-	$dbconnect->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-}
+	//for mysqli
+	$conn = mysqli_connect(DB_HOST, DB_USER, DB_PASS, DB_NAME);
 
-catch (PDOExeption $e) {
-	echo $e->getMessage();
-}
-
-function clean_input($input) {
-
-	/* trim */
-	$input = trim($input);
-
-	/* Strip unnecessary characters */
-	$input = stripslashes($input);
-
-	/* escape quote from user input */
-	$input = htmlspecialchars($input, ENT_QUOTES, "UTF-8");
-
-	return $input;
-
-}
+	function clean_input($input) {
+		$input = trim($input);
+		$input = stripslashes($input);
+		$input = htmlspecialchars($input, ENT_QUOTES, "UTF-8");
+		
+		return $input;
+	}

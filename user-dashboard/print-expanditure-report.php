@@ -1,8 +1,7 @@
-<?php $title = "Exipanditure Type" ?>
+<?php $title = "Exipanditure Type Report" ?>
 
 <?php include('includes/sidebar.php'); ?>
 
-<?php include('../includes/config.php');?>
 <div class="main_container">
  <?php 
         if(isset($_GET['search_by_date'])) {

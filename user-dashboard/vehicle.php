@@ -2,8 +2,6 @@
 <div class="main_container">
     <?php
 
-    include('includes/connection.php');
-
     $vahicle = mysqli_query($conn, "SELECT car_brand.brand_name AS brand,
             vehicle.veh_id, 
             vehicle.plate_no,

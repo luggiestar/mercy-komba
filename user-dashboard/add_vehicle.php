@@ -1,7 +1,7 @@
 <?php
-session_start();
-error_reporting(0);
-include('includes/config.php');
+
+require_once('../includes/config.php');
+
 if (isset($_POST['add_vehicle'])) {
 
     $plate_no = $_POST['plate_no'];
@@ -54,7 +54,7 @@ if (isset($_POST['add_vehicle'])) {
             $veh_regdate = 'CURRENT_TIMESPAMP';
             $veh_available = 1;
 
-            $query = $dbh->prepare($query);
+            $query = $dbconnect->prepare($query);
             $query->bindParam(':plate_no', $plate_no, PDO::PARAM_STR);
             $query->bindParam(':veh_type', $veh_type, PDO::PARAM_STR);
             $query->bindParam(':chesisno', $chesisno, PDO::PARAM_STR);
@@ -70,7 +70,7 @@ if (isset($_POST['add_vehicle'])) {
             $query->bindParam(':route_name', $route_name, PDO::PARAM_STR);
 
             $query->execute();
-            $lastInsertId = $dbh->lastInsertId();
+            $lastInsertId = $dbconnect->lastInsertId();
 
             if ($lastInsertId) {
                 $_SESSION['success'] = "Vehicle Created Successfully";
