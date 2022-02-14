@@ -38,6 +38,27 @@
            background-color: #FFF;
            background-position: center;
         }
+          .vms-btn {
+            background-color: #024e5a;
+            color: whitesmoke;
+            transition: ease-in 0.4s all;
+        }
+        .vms-btn:hover {
+            background-color: #024e5a;
+            color: whitesmoke;
+        }
+
+        .vms-btn:focus {
+            background-color: #024e5a;
+            color: whitesmoke;
+        }
+
+        .btn-success {
+            background-color: #024e5a;
+        }
+        .vms-text {
+            color: #024e5a;
+        }
     </style>
 <body>
 <div class="preloader"></div>
@@ -47,7 +68,7 @@
             <div class="col-xl-4 col-md-5 col-xs-12 wow fadeIn login-form-mobile">
                 <div class="card-heade bg-white pb-1">
                     <center><img src="icon.png" alt="" srcset="" class="kvm-logo"></center>
-                    <h3 class="text-center">Signin to KVMS</h3>
+                    <h3 class="text-center vms-text">Signin to KVMS</h3>
                 </div>
                 <div class="kvm-car card">
                     <div class="card-bod px-lg-3 px-sm-3 py-lg-5 mt-3">
@@ -73,7 +94,7 @@
                             </div>
 
                             <div class="text-center">
-                                <button type="submit" name="signin" class="btn btn-block btn-success my-4">Sign in</button>
+                                <button type="submit" name="signin" class="btn btn-block vms-btn my-4">Sign in</button>
                             </div>
                         </form>
                     </div>
@@ -87,7 +108,7 @@
                 <div class="col-md-12 col-xs-12 my_footer">
                     <div class="copyright text-center">
                         &copy; <?php echo date ('Y'); ?>
-                        <a href="http://www.kvms.co.tz/" target="_blank" class="text-success" >Komba Vehicle Management System</a>.
+                        <a href="http://www.kvms.co.tz/" target="_blank" class="vms-text" >Komba Vehicle Management System</a>.
                     </div>
                 </div>
 
