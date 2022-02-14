@@ -3,7 +3,7 @@
      aria-labelledby="#edit_vehacle" aria-hiden="true">
      <div class="modal-dialog" role="document">
          <div class="modal-content">
-             <div class="modal-header bg">
+             <div class="modal-header kvm-bg">
                  <h3 class="modal-title text-white" id="edit_vehacle">Edit Vehicle</h3>
                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                      <span aria-hidden="true" class="text-white">&times;</span>
@@ -109,7 +109,6 @@
                      </div>
                  </div>
                  <div class="modal-footer">
-                     <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
                      <button type="submit" name="edit_vehicle" class="btn vms-btn">Change</button>
                  </div>
              </form>
@@ -134,8 +133,7 @@
                      <input hidden type="number" name="veh_id" value="<?php echo $vahicle_row['veh_id'] ?>">
                  </div>
                  <div class="modal-footer">
-                     <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                     <button type="submit" name="delete_vehicle" class="btn vms-btn">Yes Delete</button>
+                    <button type="submit" name="delete_vehicle" class="btn vms-btn">Yes Delete</button>
                  </div>
              </form>
          </div>

@@ -1,7 +1,7 @@
 <div class="modal fade" id="expenditure-modal" tabindex="-1" role="dialog" aria-labelledby="user" aria-hiden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
-            <div class="modal-header bg-success">
+            <div class="modal-header kvm-bg">
                 <h3 class="modal-title text-white" id="user">Expanditure</h3>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true" class="text-white">&times;</span>
@@ -17,8 +17,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                    <button type="submit" name="save_exipanditure" class="btn btn-success">Register</button>
+                    <button type="submit" name="save_exipanditure" class="btn btn-success">Save</button>
                 </div>
             </form>
         </div>

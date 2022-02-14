@@ -1,7 +1,7 @@
 <div class="modal fade" id="print-report" tabindex="-1" role="dialog" aria-labelledby="print-report" aria-hiden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
-            <div class="modal-header bg">
+            <div class="modal-header kvm-bg">
                 <h6 class="modal-title text-white" id="print-report">Print Report</h6>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true" class="text-white">&times;</span>

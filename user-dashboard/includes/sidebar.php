@@ -43,7 +43,7 @@
             transition: ease-in 0.4s all;
         }
         .vms-btn:hover {
-            background-color: #065e6c;
+            background-color: #024e5a;
             color: whitesmoke;
         }
 
@@ -56,7 +56,7 @@
             background-color: #024e5a;
         }
 
-        .vms-bg {
+        .kvm-bg {
             background-color: #024e5a;
         }
         #search_date, #search_exipendture_type {
@@ -134,7 +134,7 @@
     <div id="wrapper">
 
         <!-- Sidebar -->
-        <ul class="navbar-nav vms-bg sidebar sidebar-dark accordion" id="accordionSidebar">
+        <ul class="navbar-nav kvm-bg sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
@@ -192,7 +192,7 @@
                             <i class="fas fa-fw fa-car text-danger"></i> vehicle
                         </a>
                         <a class="collapse-item" href="maintainance.php">
-                            <i class="fas fa-fw fa-wrench"></i> Maintainance
+                            <i class="fas fa-fw fa-wrench text-danger"></i> Maintainance
                         </a>
                         <h6 class="collapse-header">Car Components:</h6>
                         <a class="collapse-item" href="brand.php">

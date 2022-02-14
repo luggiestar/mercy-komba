@@ -3,7 +3,7 @@
      aria-labelledby="#edit_user" aria-hiden="true">
      <div class="modal-dialog" role="document">
          <div class="modal-content">
-             <div class="modal-header bg">
+             <div class="modal-header kvm-bg">
                  <h3 class="modal-title text-white" id="edit_user">Edit User</h3>
                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                      <span aria-hidden="true" class="text-white">&times;</span>
@@ -42,7 +42,6 @@
                      </div>
                  </div>
                  <div class="modal-footer">
-                     <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
                      <button type="submit" name="edit_user" class="btn vms-btn">Change</button>
                  </div>
              </form>
@@ -55,7 +54,7 @@
      aria-labelledby="#delete_user" aria-hiden="true">
      <div class="modal-dialog" role="document">
          <div class="modal-content">
-             <div class="modal-header bg">
+             <div class="modal-header kvm-bg">
                  <h3 class="modal-title text-white" id="delete_user">Delete Driver</h3>
                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                      <span aria-hidden="true" class="text-white">&times;</span>
@@ -67,7 +66,6 @@
                      <input hidden type="number" name="user_id" value="<?php echo $user_row['user_id'] ?>">
                  </div>
                  <div class="modal-footer">
-                     <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
                      <button type="submit" name="delete_user" class="btn vms-btn">Yes Delete</button>
                  </div>
              </form>

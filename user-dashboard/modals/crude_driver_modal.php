@@ -3,7 +3,7 @@
      aria-labelledby="#edit_vehacle" aria-hiden="true">
      <div class="modal-dialog" role="document">
          <div class="modal-content">
-             <div class="modal-header bg">
+             <div class="modal-header kvm-bg">
                  <h3 class="modal-title text-white" id="edit_vehacle">Edit Driver</h3>
                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                      <span aria-hidden="true" class="text-white">&times;</span>
@@ -55,7 +55,6 @@
                      </div>
                  </div>
                  <div class="modal-footer">
-                     <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
                      <button type="submit" name="edit_driver" class="btn vms-btn">Change</button>
                  </div>
              </form>
@@ -68,7 +67,7 @@
      aria-labelledby="#delete_driver" aria-hiden="true">
      <div class="modal-dialog" role="document">
          <div class="modal-content">
-             <div class="modal-header bg">
+             <div class="modal-header kvm-bg">
                  <h3 class="modal-title text-white" id="delete_driver">Delete Driver</h3>
                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                      <span aria-hidden="true" class="text-white">&times;</span>
@@ -80,7 +79,6 @@
                      <input hidden type="number" name="driverid" value="<?php echo $diver_row['driverid'] ?>">
                  </div>
                  <div class="modal-footer">
-                     <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
                      <button type="submit" name="delete_driver" class="btn vms-btn">Yes Delete</button>
                  </div>
              </form>

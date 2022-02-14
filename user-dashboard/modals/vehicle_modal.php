@@ -1,7 +1,7 @@
 <div class="modal fade" id="vehicle" tabindex="-1" role="dialog" aria-labelledby="post" aria-hiden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
-            <div class="modal-header bg">
+            <div class="modal-header kvm-bg">
                 <h3 class="modal-title text-white" id="post">New Vehicle</h3>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true" class="text-white">&times;</span>
@@ -109,7 +109,6 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
                     <button type="submit" name="add_vehicle" class="btn vms-btn">Register</button>
                 </div>
             </form>

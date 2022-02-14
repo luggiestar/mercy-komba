@@ -4,7 +4,7 @@
     aria-labelledby="#delete_capacity" aria-hiden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
-            <div class="modal-header bg">
+            <div class="modal-header kvm-bg">
                 <h5 class="modal-title text-white" id="delete_capacity">Delete</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true" class="text-white">&times;</span>
@@ -16,7 +16,6 @@
                     <input hidden type="number" name="capacity_id" value="<?php echo $capacity_row['id'] ?>" require>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
                     <button type="submit" name="delete_capacity" class="btn vms-btn">Yes Delete</button>
                 </div>
             </form>
