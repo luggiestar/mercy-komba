@@ -1,7 +1,6 @@
 <?php
-session_start();
-error_reporting(0);
-include('includes/config.php');
+include('../includes/config.php');
+
 if (isset($_POST['add_driver'])) {
 
     $drname = $_POST['drname'];
@@ -50,7 +49,7 @@ if (isset($_POST['add_driver'])) {
                 VALUES(:drname, :driverdob, :drjoin, :drmobile, :drlicense, :drlicensevalid, :draddress, 
                 :drphoto, :dr_available)";
 
-            $query = $dbh->prepare($query);
+            $query = $dbconnect->prepare($query);
             $query->bindParam(':drname', $drname, PDO::PARAM_STR);
             $query->bindParam(':driverdob', $driverdob, PDO::PARAM_STR);
             $query->bindParam(':drjoin', $drjoin, PDO::PARAM_STR);
@@ -62,7 +61,7 @@ if (isset($_POST['add_driver'])) {
             $query->bindParam(':dr_available', $dr_available, PDO::PARAM_STR);
 
             $query->execute();
-            $lastInsertId = $dbh->lastInsertId();
+            $lastInsertId = $dbconnect->lastInsertId();
 
             if ($lastInsertId) {
                 $_SESSION['success'] = "Dirver Created Successfully";

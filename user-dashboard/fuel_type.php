@@ -1,7 +1,6 @@
 <?php include('includes/sidebar.php'); ?>
 <div class="main_container">
     <?php
-        include('includes/connection.php');
 
         $fuel_type =  mysqli_query($conn, "SELECT fuel_type.*, user.first_name, user.last_name
         FROM user, fuel_type

@@ -4,7 +4,7 @@
       aria-labelledby="#delete_fuel" aria-hiden="true">
       <div class="modal-dialog" role="document">
           <div class="modal-content">
-              <div class="modal-header bg">
+              <div class="modal-header kvm-bg">
                   <h5 class="modal-title text-white" id="delete_fuel">Delete</h5>
                   <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                       <span aria-hidden="true" class="text-white">&times;</span>
@@ -16,7 +16,6 @@
                       <input hidden type="number" name="fuel_id" value="<?php echo $fuel_type_row['id'] ?>" require>
                   </div>
                   <div class="modal-footer">
-                      <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
                       <button type="submit" name="delete_fuel_type" class="btn vms-btn">Yes Delete</button>
                   </div>
               </form>
@@ -29,7 +28,7 @@
       aria-labelledby="#edit_fuel" aria-hiden="true">
       <div class="modal-dialog" role="document">
           <div class="modal-content">
-              <div class="modal-header bg">
+              <div class="modal-header kvm-bg">
                   <h5 class="modal-title text-white" id="edit_fuel">Edit Fuel Type</h5>
                   <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                       <span aria-hidden="true" class="text-white">&times;</span>
@@ -43,7 +42,6 @@
                           <input hidden type="number" name="fuel_id" value="<?php echo $fuel_type_row['id'] ?>" require>
                       </div>
                       <div class="modal-footer">
-                          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
                           <button type="submit" name="edit_fuel" class="btn vms-btn">Save Changes</button>
                       </div>
               </form>

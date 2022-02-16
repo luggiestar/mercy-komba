@@ -1,5 +1,0 @@
-[15-Sep-2021 07:59:26 UTC] PHP Warning:  include(config.php): failed to open stream: No such file or directory in /home/kvmcotz/public_html/auth.php on line 11
-[15-Sep-2021 07:59:26 UTC] PHP Warning:  include(config.php): failed to open stream: No such file or directory in /home/kvmcotz/public_html/auth.php on line 11
-[15-Sep-2021 07:59:26 UTC] PHP Warning:  include(): Failed opening 'config.php' for inclusion (include_path='.:/opt/cpanel/ea-php74/root/usr/share/pear') in /home/kvmcotz/public_html/auth.php on line 11
-[15-Sep-2021 07:59:26 UTC] PHP Warning:  mysqli_query() expects parameter 1 to be mysqli, null given in /home/kvmcotz/public_html/auth.php on line 32
-[15-Sep-2021 07:59:26 UTC] PHP Warning:  mysqli_num_rows() expects parameter 1 to be mysqli_result, null given in /home/kvmcotz/public_html/auth.php on line 41

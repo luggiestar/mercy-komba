@@ -1,6 +1,7 @@
-<?php $title = "User-profile" ?>
+<?php $title = "User-Profile" ?>
+
 <?php include('includes/sidebar.php'); ?>
-<?php include('../includes/config.php') ?>
+
 <?php $sql = "SELECT * FROM user where user_id = :user_id";
   $stmt = $dbconnect->prepare($sql);
   $stmt->execute(['user_id'=>$_SESSION['UserID']]);
@@ -51,9 +52,9 @@
 						</div>
 						<div class="col-xl-4">
 							<label>Gender</label>
-							<?php if(strtoupper($user_detail['sex']) == 'M'): ?>
+							<?php if( $user_detail['sex'] == 'M' OR $user_detail['sex'] == 'm'): ?>
 							<input type="text" readonly class="control-input" value="Male">
-							<?php elseif(strtoupper($user_detail['sex']) == 'F'): ?>
+							<?php elseif( $user_detail['sex'] == 'F' OR $user_detail['sex'] == 'f'): ?>
 							<input type="text" readonly class="control-input" value="Female">
 							<?php else: ?>
 								<input type="text" readonly class="control-input" value="Note Defined">

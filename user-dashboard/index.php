@@ -2,10 +2,6 @@
 
 <?php include('includes/sidebar.php'); ?>
 
-<?php include('includes/connection.php');?>
-
-<?php include('../includes/config.php');?>
-
 <?php 
     
     //users
@@ -36,15 +32,11 @@
     $sum_exipanditure->execute();
     $exipanditure_sum = $sum_exipanditure->fetch();
 
-    $exipanditure = $dbconnect->prepare("SELECT * FROM tbl_expenditure, tbl_expenditure_type 
-        WHERE tbl_expenditure_type.expenditure_type_id = tbl_expenditure.expenditure_type");
+    $exipanditure = $dbconnect->prepare("SELECT * FROM tbl_expenditure");
     $exipanditure->execute();
     $exipanditure_list = $exipanditure->fetchAll(PDO::FETCH_ASSOC);
 
-    $exipanditure_week = $dbconnect->prepare("SELECT sum(expenditure_amount) as amount FROM tbl_expenditure, tbl_expenditure_type 
-        WHERE tbl_expenditure_type.expenditure_type_id = tbl_expenditure.expenditure_type
-        AND week(expenditure_date)=week(now())
-        ");
+    $exipanditure_week = $dbconnect->prepare("SELECT sum(expenditure_amount) as amount FROM tbl_expenditure WHERE week(expenditure_date)=week(now())");
     $exipanditure_week->execute();
     $exipanditure_week_result = $exipanditure_week->fetch(PDO::FETCH_ASSOC);
 ?>
@@ -196,9 +188,25 @@
                              </tr>
                         </thead>
                         <?php foreach($exipanditure_list  as $exipanditure_item): ?>
+                            <?php 
+                                $exipanditure = $exipanditure_item['exp_id'];
+                                
+                                $expenditure_type_log = $dbconnect->prepare("SELECT tbl_expenditure_type.* FROM tbl_expenditure_logs, tbl_expenditure,tbl_expenditure_type 
+                                    WHERE expenditure = :expenditure 
+                                    AND tbl_expenditure_logs.expenditure = tbl_expenditure.exp_id
+                                    AND tbl_expenditure_logs.expenditure_type = tbl_expenditure_type.expenditure_type_id");
+                                
+                                $expenditure_type_log->execute(["expenditure"=>$exipanditure]);
+
+                                $expenditure_type_log_list = $expenditure_type_log->fetchAll(PDO::FETCH_ASSOC);
+                            ?>
                             <tr>
-                                <td><?php echo strtoupper($exipanditure_item['expenditure_type_name']) ?></td>
-                                <td><?php echo strtoupper($exipanditure_item['expenditure_amount']) ?></td>
+                                <td><?php echo $exipanditure_item['expenditure_amount'] ?></td>
+                                <td>
+                                    <?php foreach($expenditure_type_log_list as $e_t_value): ?>
+                                        <span class="badge bg-success text-white"><?php echo $e_t_value['expenditure_type_name'] ?></span>
+                                    <?php endforeach ?>    
+                                </td>
                             </tr>
                         <?php endforeach ?>
                     </table>

@@ -1,7 +1,7 @@
 <?php
-session_start();
-error_reporting(0);
-include('includes/config.php');
+
+include('../includes/config.php');
+
 if (isset($_POST['add_driver'])) {
 
     $first_name = $_POST['first_name'];
@@ -25,7 +25,7 @@ if (isset($_POST['add_driver'])) {
         $query = "INSERT INTO user(first_name, last_name, email, username, password, is_admin, is_active) 
             VALUES(:first_name, :last_name, :email, :username, :password, :is_admin, :is_active)";
 
-        $query = $dbh->prepare($query);
+        $query = $dbconnect->prepare($query);
         $query->bindParam(':first_name', $first_name, PDO::PARAM_STR);
         $query->bindParam(':last_name', $last_name, PDO::PARAM_STR);
         $query->bindParam(':email', $email, PDO::PARAM_STR);
@@ -35,7 +35,7 @@ if (isset($_POST['add_driver'])) {
         $query->bindParam(':password', $password, PDO::PARAM_STR);
 
         $query->execute();
-        $lastInsertId = $dbh->lastInsertId();
+        $lastInsertId = $dbconnect->lastInsertId();
 
         // if data insert successfull
         if ($lastInsertId) {

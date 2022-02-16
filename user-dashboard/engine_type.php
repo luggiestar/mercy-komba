@@ -1,7 +1,6 @@
 <?php include('includes/sidebar.php'); ?>
 <div class="main_container">
     <?php
-        include('includes/connection.php');
 
         $car_capacity =  mysqli_query($conn, "SELECT car_capacity.*, user.first_name, user.last_name
         FROM user, car_capacity

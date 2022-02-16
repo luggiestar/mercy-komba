@@ -2,7 +2,7 @@
 <div class="modal fade" id="brand" tabindex="-1" role="dialog" aria-labelledby="brand" aria-hiden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
-            <div class="modal-header bg">
+            <div class="modal-header kvm-bg">
                 <h5 class="modal-title text-white" id="brand">New Car Brand</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true" class="text-white">&times;</span>
@@ -17,7 +17,6 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
                     <button type="submit" name="add_brand" class="btn vms-btn">Save New Brand</button>
                 </div>
             </form>
@@ -29,7 +28,7 @@
 <div class="modal fade" id="fuelType" tabindex="-1" role="dialog" aria-labelledby="fuelType" aria-hiden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
-            <div class="modal-header bg">
+            <div class="modal-header kvm-bg">
                 <h5 class="modal-title text-white" id="fuelType">New Fuel Type</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true" class="text-white">&times;</span>
@@ -44,7 +43,6 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
                     <button type="submit" name="add_fueltype" class="btn vms-btn">Save Fuel Type</button>
                 </div>
             </form>
@@ -56,7 +54,7 @@
 <div class="modal fade" id="capacity" tabindex="-1" role="dialog" aria-labelledby="capacity" aria-hiden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
-            <div class="modal-header bg">
+            <div class="modal-header kvm-bg">
                 <h5 class="modal-title text-white" id="capacity">Engine capacity</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true" class="text-white">&times;</span>
@@ -72,7 +70,6 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
                     <button type="submit" name="add_enginecapacity" class="btn vms-btn">Save engine capacity</button>
                 </div>
             </form>

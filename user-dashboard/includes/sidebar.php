@@ -1,4 +1,5 @@
-<?php include('../includes/mustlogin.php') ?>
+<?php require_once('../includes/config.php') ?>
+<?php require_once('../includes/mustlogin.php') ?>
 <?php  
     // $data = ['user_id'=>$_SESSION['UserID']];
     // $user_profile_detatile_sql = "SELECT * FROM user WHERE user_id = :user_id"; 
@@ -15,7 +16,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="Komba Vehicle management system">
     <meta name="author" content="Komba Vehicle management system">
-
+    <link rel="icon" href="../icon.png" type="image/png">
     <title>KVMS | <?PHP echo $title ?></title>
 
     <!-- Custom fonts for this template-->
@@ -42,7 +43,7 @@
             transition: ease-in 0.4s all;
         }
         .vms-btn:hover {
-            background-color: #065e6c;
+            background-color: #024e5a;
             color: whitesmoke;
         }
 
@@ -55,9 +56,14 @@
             background-color: #024e5a;
         }
 
-        .vms-bg {
+        .kvm-bg {
             background-color: #024e5a;
         }
+
+        .kvm-color {
+            color: #024e5a;
+        }
+
         #search_date, #search_exipendture_type {
             cursor: pointer;
         }
@@ -68,7 +74,7 @@
         .form-control{
             border: none;
             border-radius: 0px;
-            margin-top: 20px;
+            margin-top: 10px;
             margin-bottom: 20px;
             border-bottom: 1px solid #024e5a;
         }
@@ -77,7 +83,7 @@
             box-shadow: none;
             border: none;
             border-radius: 0px;
-            margin-top: 20px;
+            margin-top: 13px;
             margin-bottom: 20px;
             border-bottom: 1px solid #024e5a;
         }
@@ -133,7 +139,7 @@
     <div id="wrapper">
 
         <!-- Sidebar -->
-        <ul class="navbar-nav vms-bg sidebar sidebar-dark accordion" id="accordionSidebar">
+        <ul class="navbar-nav kvm-bg sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
@@ -191,7 +197,7 @@
                             <i class="fas fa-fw fa-car text-danger"></i> vehicle
                         </a>
                         <a class="collapse-item" href="maintainance.php">
-                            <i class="fas fa-fw fa-wrench"></i> Maintainance
+                            <i class="fas fa-fw fa-wrench text-danger"></i> Maintainance
                         </a>
                         <h6 class="collapse-header">Car Components:</h6>
                         <a class="collapse-item" href="brand.php">
@@ -209,22 +215,36 @@
 
             <hr class="sidebar-divider">
                <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#expenditure"
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#income"
                     aria-expanded="true" aria-controls="Component">
                     <i class="fa fa-fw fa-money "></i>
-                    <span> Expenditure </span>
+                    <span> Income </span>
                 </a>
-                <div id="expenditure" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
+                <div id="income" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
+                        
+                        <h6 class="collapse-header">Income Management:</h6>
+                        <a class="collapse-item" href="income.php"> 
+                            <i class="fa fa-money text-danger"></i> income
+                        </a>
+                        <a class="collapse-item" href="income-source.php">
+                            <i class="fa fa-list text-danger"></i> Income Source
+                        </a>
+                        
+                        <h6 class="collapse-header">Accounts Management:</h6>
+                        <a class="collapse-item" href="account-balance.php"> 
+                            <i class="fa fa-bank text-danger"></i> Account Balance
+                        </a>
+                        <a class="collapse-item" href="account-chart.php">
+                            <i class="fa fa-list text-danger"></i> Account Chart
+                        </a>
+
                         <h6 class="collapse-header">Expenditure Management:</h6>
                         <a class="collapse-item" href="expenditure.php"> 
                             <i class="fa fa-money text-danger"></i> Expenditures
                         </a>
                         <a class="collapse-item" href="expenditure-type.php">
                             <i class="fa fa-gears text-danger"></i> Expenditure type
-                        </a>
-                        <a class="collapse-item" href="expenditure-report.php">
-                            <i class="fa fa-file-pdf-o text-danger"></i> Expenditure Report
                         </a>
                     </div>
                 </div>

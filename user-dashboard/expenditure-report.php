@@ -1,8 +1,6 @@
 <?php $title = "Exipanditure Type" ?>
 
 <?php include('includes/sidebar.php'); ?>
-
-<?php include('../includes/config.php');?>
 <div class="main_container">
  <?php 
         $exipenditure_report = $dbconnect->prepare("SELECT * FROM `exipenditure_report` ORDER BY expenditure_date ");

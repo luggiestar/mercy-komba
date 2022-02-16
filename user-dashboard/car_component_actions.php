@@ -1,6 +1,6 @@
-<?php include('includes/connection.php');
-include('includes/config.php');
-session_start();
+<?php 
+
+include('../includes/config.php');
 
 /*LOGICS FOR NEW CAR BRAND START FROM HERE INCLUDE CREATE DELETE AND UPDATE*/
 if (isset($_POST['add_brand'])) {
@@ -10,12 +10,12 @@ if (isset($_POST['add_brand'])) {
 
     $query = "INSERT INTO car_brand(brand_name, added_by) VALUES(:brand_name, :registrer)";
 
-    $query = $dbh->prepare($query);
+    $query = $dbconnect->prepare($query);
     $query->bindParam(':brand_name', $brand_name, PDO::PARAM_STR);
     $query->bindParam(':registrer', $registrer, PDO::PARAM_STR);
 
     $query->execute();
-    $lastInsertId = $dbh->lastInsertId();
+    $lastInsertId = $dbconnect->lastInsertId();
 
     if ($lastInsertId) {
         $_SESSION['success'] = "Brand Created Successfully";
@@ -68,12 +68,12 @@ if (isset($_POST['add_fueltype'])) {
 
     $query = "INSERT INTO fuel_type(fuel_type, added_by) VALUES(:fuel_type, :registrer)";
 
-    $query = $dbh->prepare($query);
+    $query = $dbconnect->prepare($query);
     $query->bindParam(':fuel_type', $fuel_type, PDO::PARAM_STR);
     $query->bindParam(':registrer', $registrer, PDO::PARAM_STR);
 
     $query->execute();
-    $lastInsertId = $dbh->lastInsertId();
+    $lastInsertId = $dbconnect->lastInsertId();
 
     if ($lastInsertId) {
         $_SESSION['success'] = "Fuel Type Created Successfully";
@@ -129,12 +129,12 @@ if (isset($_POST['add_enginecapacity'])) {
 
     $query = "INSERT INTO car_capacity(car_capacity, added_by) VALUES(:car_capacity, :registrer)";
 
-    $query = $dbh->prepare($query);
+    $query = $dbconnect->prepare($query);
     $query->bindParam(':car_capacity', $car_capacity, PDO::PARAM_STR);
     $query->bindParam(':registrer', $registrer, PDO::PARAM_STR);
 
     $query->execute();
-    $lastInsertId = $dbh->lastInsertId();
+    $lastInsertId = $dbconnect->lastInsertId();
 
     if ($lastInsertId) {
         $_SESSION['success'] = "Car Capacity Created Successfully";

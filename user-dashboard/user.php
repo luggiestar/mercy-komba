@@ -1,8 +1,6 @@
 <?php include('includes/sidebar.php'); ?>
 <div class="main_container">
 
-<?php include('includes/connection.php');?>
-
 <?php $user = mysqli_query($conn, "SELECT * FROM user");?>
 
 <?php $count_v = mysqli_num_rows($user);?>

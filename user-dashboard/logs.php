@@ -1,7 +1,6 @@
 <?php $title = "User-logs" ?>
 <?php include('includes/sidebar.php'); ?>
-<?php include('../includes/config.php') ?>
-<?php $sql = "SELECT * FROM tbl_logs where user = :user";
+<?php $sql = "SELECT * FROM tbl_logs where user = :user ORDER BY log_date DESC";
   $stmt = $dbconnect->prepare($sql);
   $stmt->execute(['user'=>$_SESSION['UserID']]);
   $logs_list = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -12,7 +11,7 @@
 			<div class="card">
 				<div class="card-body">
 					<div class="table-responsive">
-						<table class="table">
+						<table class="table" id="dataTable" width="100%" cellspacing="0">
 							<thead>
 								<tr>
 									<th>S/N</th>
