@@ -1,6 +1,10 @@
 <?php $title = "User-logs" ?>
 <?php include('includes/sidebar.php'); ?>
+<<<<<<< HEAD
 <?php $sql = "SELECT * FROM tbl_logs where user = :user ORDER BY log_date DESC";
+=======
+<?php $sql = "SELECT * FROM tbl_logs where user = :user";
+>>>>>>> fd0e7ded1f0cb80b27be80abd8f4a78915228128
   $stmt = $dbconnect->prepare($sql);
   $stmt->execute(['user'=>$_SESSION['UserID']]);
   $logs_list = $stmt->fetchAll(PDO::FETCH_ASSOC);

@@ -2,12 +2,20 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header kvm-bg">
+<<<<<<< HEAD
                 <h6 class="modal-title text-white" id="user">Expanditure</h6>
+=======
+                <h3 class="modal-title text-white" id="user">Expanditure</h3>
+>>>>>>> fd0e7ded1f0cb80b27be80abd8f4a78915228128
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true" class="text-white">&times;</span>
                 </button>
             </div>
+<<<<<<< HEAD
             <form action="expenditure/new-expenditure.php" method="POST" enctype="multipart/form-data">
+=======
+            <form action="exipanditure/new-exepanditure.php" method="POST" enctype="multipart/form-data">
+>>>>>>> fd0e7ded1f0cb80b27be80abd8f4a78915228128
                 <div class="modal-body">
                     <div class="row mt-3">
                         <div class="col-xl-6">
@@ -40,7 +48,11 @@
                     </div>
                 </div>
                 <div class="modal-footer">
+<<<<<<< HEAD
                     <input type="submit" name="save_exipanditure" class="btn vms-btn" value="Save Expendature">
+=======
+                    <button type="submit" name="save_exipanditure" class="btn btn-success">Save</button>
+>>>>>>> fd0e7ded1f0cb80b27be80abd8f4a78915228128
                 </div>
             </form>
         </div>
