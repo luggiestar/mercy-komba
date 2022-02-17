@@ -13,8 +13,6 @@
 <?php require_once('../../includes/mustlogin.php') ?>
 
 <?php 
-	$expenditure_id = '';
-	$amount = '';
 
 	if(isset($_POST['commit_exptkvm'])):
 
@@ -83,7 +81,7 @@
 						<tr>
 							<th>Expenditure Amount = Tsh. <?php echo number_format($_POST['amount'], 2)?>/=</th>
 						</tr>
-					</table>
+					</table>`
 				</div>
 				
 				<?php if($commited == 0): ?>
@@ -91,7 +89,8 @@
 					<form id="commit-form" method="POST">
 						<input readonly hidden type="number" name="amount" value="<?php echo $amount ?>">
 		                <input readonly hidden type="number" name="expenditure_id" value="<?php echo $expenditure_id ?>">
-
+		                <input readonly hidden type="text" name="account_debited_name" value="<?php echo $account_debited_name ?>">
+						<input readonly hidden type="number" name="account_debited_id" value="<?php echo $account_debited_id ?>">
 						<!-- if select account balance is insuficient -->
 						<?php if($amount >= $current_balance): ?>
 							<!-- if there is an account that it balance is suficient -->
@@ -105,7 +104,7 @@
 				                        </option>
 				                    <?php endforeach ?>
 				                </select>
-				                <button type="submit" class="btn btn-primary btn-sm" id="save" name="confirm-commit"> 
+				                <button type="submit" class="btn btn-primary btn-sm mt-3" id="save" name="confirm-commit"> 
 								Commit Expenditure <i class="fa fa-check"></i> 
 								</button>
 				            <!-- if not found that there is an account that it balance is suficient -->
@@ -120,7 +119,7 @@
 		            	<?php else: ?>
 		            		<input type="text" readonly class="form-control" value="Selected account is <?php echo $account_debited_name ?>">
 		            		<input type="number" hidden readonly name="debit_account" value="<?php echo $account_debited_id ?>">
-		            		<button type="submit" class="btn btn-primary btn-sm" id="save" name="confirm-commit"> 
+		            		<button type="submit" class="btn btn-primary btn-sm mt-3" id="save" name="confirm-commit"> 
 								Commit Expenditure <i class="fa fa-check"></i> 
 							</button>
 		            	<?php endif ?>
@@ -144,6 +143,15 @@
 		$debit_account = $_POST['debit_account'];
 		$expenditure_id = $_POST['expenditure_id'];
 		$amount = $_POST['amount'];
+		$account_debited_name = $_POST['account_debited_name'];
+		$account_debited_id = $_POST['account_debited_id'];
+
+		/*query current to get current amount*/
+		$check_balance = $dbconnect->prepare("SELECT balance FROM tbl_account_credit WHERE credit_id = :credit_id");
+		$check_balance->execute([':credit_id'=>$account_debited_id]);
+		$check_balance_object = $check_balance->fetch();
+		$current_balance = $check_balance_object['balance'];
+		/* end of check balance */
 
 		if(empty($debit_account)) {
 			$_SESSION['error'] = "Account to be debited required please credit your account before Debit it";
@@ -177,16 +185,39 @@
 					$update_expenditure->execute($data);
 					
 					if ($update_expenditure) {
-						$_SESSION['success'] = "Tsh.$amount/= Deducted from your account and Expenditure Commited successfuly";
-						header("location:../expenditure.php");			
+	              
+
+		         	    $amount_after = $current_balance - $amount;
+		         	    $status_summary = 'debit';
+					 	$data = [
+							'account_debited_name'=>$account_debited_name,
+							'current_balance'=>$current_balance,
+						    'amount_after'=>$amount_after,
+						 	'status'=>$status_summary,
+							'created_by'=>$user
+		         		];
+				    	
+				    	$sql = "INSERT INTO tbl_account_summary(account, amount_before, amount_after, status, created_by) 
+				    	VALUES(:account_debited_name, :current_balance, :amount_after, :status, :created_by)";
+
+            	    	$save_summary = $dbconnect->prepare($sql);
+				    	$save_summary->execute($data);
+				    	if ($save_summary) {
+				    		$_SESSION['success'] = "Tsh.$amount/= Deducted from your account and Expenditure Commited successfuly";
+							header("location:../expenditure.php");	
+							echo "success $account_debited_name $current_balance $amount_after $status_summary $user";
+						}
+						else {
+							echo "error";
+						}
 					}
 
 					else {
 						$_SESSION['error'] = "Tsh.$amount/= Deducted from your account but Expenditure fail to be Commited";
 						header("location:../expenditure.php");	
 					}
-				}
 				
+				}
 				else {
 					$_SESSION['error'] = "Fail to track account";
 					header("location:../expenditure.php");

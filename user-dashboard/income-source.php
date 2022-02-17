@@ -1,3 +1,4 @@
+<?php $title = "income-source" ?>
 <?php include('includes/sidebar.php'); ?>
 <div class="main_container">
     <?php
