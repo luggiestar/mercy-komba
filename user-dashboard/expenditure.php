@@ -19,6 +19,10 @@
         $account_debited = $dbconnect->prepare("SELECT tbl_account_credit.credit_id, tbl_account_chart.account_name FROM tbl_account_credit,tbl_account_chart WHERE tbl_account_chart.acount_id = tbl_account_credit.account_chart");
         $account_debited->execute();
         $account_debited_list = $account_debited->fetchAll(PDO::FETCH_ASSOC);
+
+        $count_expenditure_query = $dbconnect->prepare(" SELECT * FROM tbl_expenditure_type");
+        $count_expenditure_query->execute();
+        $count_expenditure_count = $count_expenditure_query->rowCount();
         
     ?>
     <!-- Page Heading -->

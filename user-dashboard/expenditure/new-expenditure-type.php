@@ -6,7 +6,7 @@
 		$exipandure_type = clean_input($_POST['expenditure_type_name']);
 	    
 	    if(empty($exipandure_type)) {
-				header("location:../");
+				header("location:../expenditure.php");
 				$_SESSION['error'] = "fill the field above";
 	    		echo "error required";
 		}

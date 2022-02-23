@@ -166,7 +166,7 @@
 
 			if($stmt){
 				$query_debt_account = $dbconnect->prepare("UPDATE tbl_account_credit 
-					SET balance = (balance - :amount)
+					SET balance = (balance - :amount), debited = (debited + 1)
 					WHERE credit_id = :credit_id");
 				$query_debt_account->execute([':amount'=>$amount, ':credit_id'=>$debit_account]);
 
@@ -190,7 +190,7 @@
 		         	    $amount_after = $current_balance - $amount;
 		         	    $status_summary = 'debit';
 					 	$data = [
-							'account_debited_name'=>$account_debited_name,
+							'account_debited_name'=>$debit_account,
 							'current_balance'=>$current_balance,
 						    'amount_after'=>$amount_after,
 						 	'status'=>$status_summary,

@@ -29,7 +29,7 @@
                             <select required name="account" class="form-control">
                                 <option>---Select Account to Credit---</option>
                                 <?php foreach($account_chart_list as $account_chart_item): ?>
-                                <option value="<?php echo $account_chart_item['acount_id'] ?>">
+                                <option value="<?php echo $account_chart_item['credit_id'] ?>">
                                     <span><?php echo $account_chart_item['account_name'] ?> </span>
                                 </option>
                                 <?php endforeach ?>

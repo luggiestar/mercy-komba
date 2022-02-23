@@ -7,7 +7,7 @@
                     <span aria-hidden="true" class="text-white">&times;</span>
                 </button>
             </div>
-            <form action="income/new-account.php" method="POST" enctype="multipart/form-data">
+            <form action="income/new-account.php"name= "account_chart_item" method="POST" enctype="multipart/form-data">
                 <div class="modal-body">
                     <div class="row mt-3">
                         <div class="col-xl-12">

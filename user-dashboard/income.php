@@ -10,7 +10,8 @@
     $source->execute();
     $source_list = $source->fetchAll(PDO::FETCH_ASSOC);
 
-    $account_chart= $dbconnect->prepare("SELECT * FROM tbl_account_chart");
+    $account_chart= $dbconnect->prepare("SELECT * FROM tbl_account_credit, tbl_account_chart 
+    WHERE tbl_account_chart.acount_id = tbl_account_credit.account_chart");
     $account_chart->execute();
     $account_chart_list = $account_chart->fetchAll(PDO::FETCH_ASSOC);
 
