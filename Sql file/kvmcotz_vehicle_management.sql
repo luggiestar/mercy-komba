@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 17, 2022 at 03:39 PM
+-- Generation Time: Feb 24, 2022 at 04:56 PM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.2.33
 
@@ -33,13 +33,6 @@ CREATE TABLE `admin` (
   `password` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `admin`
---
-
-INSERT INTO `admin` (`admin_id`, `username`, `password`) VALUES
-(1, 'mihaf24', '1234');
-
 -- --------------------------------------------------------
 
 --
@@ -64,15 +57,6 @@ CREATE TABLE `car_brand` (
   `date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Dumping data for table `car_brand`
---
-
-INSERT INTO `car_brand` (`id`, `brand_name`, `added_by`, `date`) VALUES
-(1, 'Toyota', 14, '2021-07-16 10:29:35'),
-(2, 'Toyota', 14, '2021-07-16 10:29:35'),
-(3, 'Suzuki', 14, '2021-09-19 18:03:14');
-
 -- --------------------------------------------------------
 
 --
@@ -85,15 +69,6 @@ CREATE TABLE `car_capacity` (
   `date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `added_by` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `car_capacity`
---
-
-INSERT INTO `car_capacity` (`id`, `car_capacity`, `date`, `added_by`) VALUES
-(1, '6000cc', '2021-07-16 11:42:26', 14),
-(2, '1500cc', '2021-07-16 12:09:23', 14),
-(4, '1000cc', '2021-07-16 12:25:39', 14);
 
 -- --------------------------------------------------------
 
@@ -156,14 +131,6 @@ CREATE TABLE `driver` (
   `dr_available` tinyint(4) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `driver`
---
-
-INSERT INTO `driver` (`driverid`, `drname`, `driverdob`, `drjoin`, `drmobile`, `drlicense`, `drlicensevalid`, `draddress`, `drphoto`, `dr_available`) VALUES
-(22, 'lugano Emmanuel', '2004-07-08', '0000-00-00', '0762506012', '3232334jk237', '2021-06-19', 'P.O BOX 01 Mbeya', 'mulogo.png', 1),
-(23, 'lugano Mwakapuku', '2021-06-25', '0000-00-00', '0762506012', '3232334jk237', '2021-06-25', 'P.O BOX 01 m', 'mulogo.png', 1);
-
 -- --------------------------------------------------------
 
 --
@@ -176,14 +143,6 @@ CREATE TABLE `fuel_type` (
   `date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `added_by` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `fuel_type`
---
-
-INSERT INTO `fuel_type` (`id`, `fuel_type`, `date`, `added_by`) VALUES
-(1, 'Diesel', '2021-07-16 10:44:08', 14),
-(2, 'Petroll', '2021-09-19 18:08:45', 14);
 
 -- --------------------------------------------------------
 
@@ -200,14 +159,6 @@ CREATE TABLE `mantainance` (
   `date_mant` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `mantainance`
---
-
-INSERT INTO `mantainance` (`mant_id`, `vehicle`, `garage`, `amount`, `description`, `date_mant`) VALUES
-(9, 2, 'mzumbe', 120000, 'Herro', '2022-02-10'),
-(17, 2, 'mzumbe', 120000, 'Test', '2022-02-11');
-
 -- --------------------------------------------------------
 
 --
@@ -219,15 +170,6 @@ CREATE TABLE `route` (
   `route_name` varchar(200) NOT NULL,
   `route_fare` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `route`
---
-
-INSERT INTO `route` (`id`, `route_name`, `route_fare`) VALUES
-(1, 'Mjini_Manyuki', 600),
-(2, 'Mjini_Mkundi', 600),
-(3, 'Mjini_Bigwa', 400);
 
 -- --------------------------------------------------------
 
@@ -247,7 +189,7 @@ CREATE TABLE `tbl_account_chart` (
 --
 
 INSERT INTO `tbl_account_chart` (`acount_id`, `account_name`, `created_at`, `created_by`) VALUES
-(5, 'NBC', '2022-02-16 21:51:19', 14);
+(1, 'NMB BANK', '2022-02-23 18:19:39', 14);
 
 -- --------------------------------------------------------
 
@@ -259,6 +201,8 @@ CREATE TABLE `tbl_account_credit` (
   `credit_id` int(11) NOT NULL,
   `account_chart` int(11) NOT NULL,
   `balance` bigint(20) NOT NULL DEFAULT 0,
+  `credited` int(11) NOT NULL DEFAULT 0,
+  `debited` int(11) NOT NULL DEFAULT 0,
   `last_update` timestamp NOT NULL DEFAULT current_timestamp(),
   `created_by` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -267,8 +211,8 @@ CREATE TABLE `tbl_account_credit` (
 -- Dumping data for table `tbl_account_credit`
 --
 
-INSERT INTO `tbl_account_credit` (`credit_id`, `account_chart`, `balance`, `last_update`, `created_by`) VALUES
-(17, 5, 62200, '2022-02-16 21:51:55', 14);
+INSERT INTO `tbl_account_credit` (`credit_id`, `account_chart`, `balance`, `credited`, `debited`, `last_update`, `created_by`) VALUES
+(1, 1, 917000, 3, 1, '2022-02-23 18:19:50', 14);
 
 -- --------------------------------------------------------
 
@@ -278,7 +222,7 @@ INSERT INTO `tbl_account_credit` (`credit_id`, `account_chart`, `balance`, `last
 
 CREATE TABLE `tbl_account_summary` (
   `summary_id` int(11) NOT NULL,
-  `account` varchar(20) NOT NULL,
+  `account` int(11) NOT NULL,
   `amount_before` bigint(20) NOT NULL,
   `amount_after` bigint(20) NOT NULL,
   `status` enum('debit','credit') NOT NULL,
@@ -291,8 +235,10 @@ CREATE TABLE `tbl_account_summary` (
 --
 
 INSERT INTO `tbl_account_summary` (`summary_id`, `account`, `amount_before`, `amount_after`, `status`, `created_at`, `created_by`) VALUES
-(2, 'NBC', 62220, 62210, 'debit', '2022-02-17 14:30:01', 14),
-(3, 'NBC', 62210, 62200, 'debit', '2022-02-17 14:32:20', 14);
+(1, 1, 0, 10000, 'credit', '2022-02-23 18:20:11', 14),
+(2, 1, 10000, 1010000, 'credit', '2022-02-23 18:20:56', 14),
+(3, 1, 1010000, 1017000, 'credit', '2022-02-23 18:22:24', 14),
+(4, 1, 1017000, 917000, 'debit', '2022-02-23 18:37:54', 14);
 
 -- --------------------------------------------------------
 
@@ -314,15 +260,7 @@ CREATE TABLE `tbl_expenditure` (
 --
 
 INSERT INTO `tbl_expenditure` (`exp_id`, `expenditure_amount`, `account_debited`, `commited`, `expenditure_date`, `user_expenditure`) VALUES
-(38, 1000, 17, '1', '2022-02-17 13:37:33', 14),
-(39, 120, 17, '1', '2022-02-17 13:42:14', 14),
-(40, 130, 17, '1', '2022-02-17 13:44:44', 14),
-(41, 120, 17, '1', '2022-02-17 13:46:31', 14),
-(42, 12, 17, '1', '2022-02-17 14:17:49', 14),
-(43, 100, 17, '1', '2022-02-17 14:19:30', 14),
-(44, 12, 17, '1', '2022-02-17 14:21:11', 14),
-(45, 10, 17, '1', '2022-02-17 14:28:52', 14),
-(46, 10, 17, '1', '2022-02-17 14:31:03', 14);
+(1, 100000, 1, '1', '2022-02-23 18:37:44', 14);
 
 -- --------------------------------------------------------
 
@@ -341,17 +279,7 @@ CREATE TABLE `tbl_expenditure_logs` (
 --
 
 INSERT INTO `tbl_expenditure_logs` (`expenditure_logs_id`, `expenditure_type`, `expenditure`) VALUES
-(42, 2, 38),
-(43, 3, 39),
-(44, 1, 40),
-(45, 2, 41),
-(46, 2, 42),
-(47, 3, 42),
-(48, 1, 43),
-(49, 2, 43),
-(50, 1, 44),
-(51, 3, 45),
-(52, 1, 46);
+(1, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -370,9 +298,7 @@ CREATE TABLE `tbl_expenditure_type` (
 --
 
 INSERT INTO `tbl_expenditure_type` (`expenditure_type_id`, `expenditure_type_name`, `date`) VALUES
-(1, 'Maintenance', '2022-02-08 22:42:39'),
-(2, 'New Car', '2022-02-08 22:42:39'),
-(3, 'Coroling', '2022-02-14 01:06:55');
+(1, 'mantainance', '2022-02-23 18:36:38');
 
 -- --------------------------------------------------------
 
@@ -394,8 +320,9 @@ CREATE TABLE `tbl_income` (
 --
 
 INSERT INTO `tbl_income` (`income_id`, `source`, `amount`, `account_credited`, `date`, `posted_by`) VALUES
-(15, 3, 10000, 5, '2022-02-16 21:53:09', 14),
-(16, 3, 90000, 5, '2022-02-16 22:24:03', 14);
+(1, 1, 10000, 1, '2022-02-23 18:20:11', 14),
+(2, 1, 1000000, 1, '2022-02-23 18:20:56', 14),
+(3, 1, 7000, 1, '2022-02-23 18:22:24', 14);
 
 -- --------------------------------------------------------
 
@@ -415,7 +342,7 @@ CREATE TABLE `tbl_income_list` (
 --
 
 INSERT INTO `tbl_income_list` (`income_list_id`, `income_list_name`, `posted_at`, `posted_by`) VALUES
-(3, 'lories', '2022-02-16 21:52:52', 14);
+(1, 'education', '2022-02-23 18:20:01', 14);
 
 -- --------------------------------------------------------
 
@@ -435,62 +362,15 @@ CREATE TABLE `tbl_logs` (
 --
 
 INSERT INTO `tbl_logs` (`log_id`, `log_action`, `log_date`, `user`) VALUES
-(62, 'adding new account Chart type', '2022-02-16 21:51:19', 14),
-(63, 'adding new income', '2022-02-16 21:51:37', 14),
-(64, 'adding new account', '2022-02-16 21:51:55', 14),
-(65, 'adding new income source type', '2022-02-16 21:52:52', 14),
-(66, 'adding new income', '2022-02-16 21:53:09', 14),
-(67, 'Commit expenditure of amount Tsh.2000/=', '2022-02-16 22:11:44', 14),
-(68, 'Commit expenditure of amount Tsh.2000/=', '2022-02-16 22:19:40', 14),
-(69, 'Commit expenditure of amount Tsh.2000/=', '2022-02-16 22:20:05', 14),
-(70, 'Commit expenditure of amount Tsh.2000/=', '2022-02-16 22:20:52', 14),
-(71, 'Commit expenditure of amount Tsh.2000/=', '2022-02-16 22:21:15', 14),
-(72, 'adding new income', '2022-02-16 22:24:02', 14),
-(73, 'Commit expenditure of amount Tsh.1000/=', '2022-02-16 22:25:09', 14),
-(74, 'Commit expenditure of amount Tsh.1500/=', '2022-02-16 22:26:19', 14),
-(75, 'Commit expenditure of amount Tsh.1500/=', '2022-02-16 22:31:40', 14),
-(76, 'Commit expenditure of amount Tsh.1500/=', '2022-02-16 22:32:38', 14),
-(77, 'Commit expenditure of amount Tsh.1500/=', '2022-02-16 22:35:05', 14),
-(78, 'Commit expenditure of amount Tsh.1500/=', '2022-02-16 22:36:19', 14),
-(79, 'Commit expenditure of amount Tsh.1500/=', '2022-02-16 22:37:00', 14),
-(80, 'Commit expenditure of amount Tsh.1500/=', '2022-02-16 22:54:58', 14),
-(81, 'Commit expenditure of amount Tsh.1500/=', '2022-02-16 22:55:31', 14),
-(82, 'Commit expenditure of amount Tsh.1500/=', '2022-02-16 22:55:44', 14),
-(83, 'Commit expenditure of amount Tsh.1500/=', '2022-02-16 22:57:12', 14),
-(84, 'Commit expenditure of amount Tsh.4000/=', '2022-02-16 23:10:59', 14),
-(85, 'Commit expenditure of amount Tsh.2000/=', '2022-02-16 23:12:47', 14),
-(86, 'Commit expenditure of amount Tsh.1000/=', '2022-02-16 23:18:03', 14),
-(87, 'Commit expenditure of amount Tsh.150/=', '2022-02-17 12:20:14', 14),
-(88, 'Commit expenditure of amount Tsh.150/=', '2022-02-17 12:21:20', 14),
-(89, 'Commit expenditure of amount Tsh.150/=', '2022-02-17 12:33:26', 14),
-(90, 'Commit expenditure of amount Tsh.150/=', '2022-02-17 12:34:26', 14),
-(91, 'Commit expenditure of amount Tsh.150/=', '2022-02-17 12:34:49', 14),
-(92, 'Commit expenditure of amount Tsh.150/=', '2022-02-17 12:41:02', 14),
-(93, 'Commit expenditure of amount Tsh.150/=', '2022-02-17 12:42:02', 14),
-(94, 'Commit expenditure of amount Tsh.150/=', '2022-02-17 12:42:32', 14),
-(95, 'Commit expenditure of amount Tsh.150/=', '2022-02-17 12:42:55', 14),
-(96, 'Commit expenditure of amount Tsh.150/=', '2022-02-17 12:43:22', 14),
-(97, 'Commit expenditure of amount Tsh.150/=', '2022-02-17 12:44:00', 14),
-(98, 'Commit expenditure of amount Tsh.150/=', '2022-02-17 12:47:35', 14),
-(99, 'Commit expenditure of amount Tsh.150/=', '2022-02-17 12:55:33', 14),
-(100, 'Commit expenditure of amount Tsh.150/=', '2022-02-17 13:01:09', 14),
-(101, 'Commit expenditure of amount Tsh.150/=', '2022-02-17 13:01:25', 14),
-(102, 'Commit expenditure of amount Tsh.120/=', '2022-02-17 13:26:30', 14),
-(103, 'Commit expenditure of amount Tsh.120/=', '2022-02-17 13:27:03', 14),
-(104, 'Commit expenditure of amount Tsh.750/=', '2022-02-17 13:35:17', 14),
-(105, 'Commit expenditure of amount Tsh.1000/=', '2022-02-17 13:37:39', 14),
-(106, 'Commit expenditure of amount Tsh.120/=', '2022-02-17 13:42:20', 14),
-(107, 'Commit expenditure of amount Tsh.130/=', '2022-02-17 13:44:50', 14),
-(108, 'Commit expenditure of amount Tsh.120/=', '2022-02-17 13:51:10', 14),
-(109, 'Commit expenditure of amount Tsh.12/=', '2022-02-17 14:18:09', 14),
-(110, 'Commit expenditure of amount Tsh.100/=', '2022-02-17 14:19:37', 14),
-(111, 'Commit expenditure of amount Tsh.12/=', '2022-02-17 14:21:16', 14),
-(112, 'Commit expenditure of amount Tsh.12/=', '2022-02-17 14:22:20', 14),
-(113, 'Commit expenditure of amount Tsh.12/=', '2022-02-17 14:24:58', 14),
-(114, 'Commit expenditure of amount Tsh.12/=', '2022-02-17 14:28:33', 14),
-(115, 'Commit expenditure of amount Tsh.10/=', '2022-02-17 14:29:12', 14),
-(116, 'Commit expenditure of amount Tsh.10/=', '2022-02-17 14:30:01', 14),
-(117, 'Commit expenditure of amount Tsh.10/=', '2022-02-17 14:32:20', 14);
+(1, 'adding new account Chart type', '2022-02-23 18:19:38', 14),
+(2, 'adding new account', '2022-02-23 18:19:50', 14),
+(3, 'adding new income source type', '2022-02-23 18:20:01', 14),
+(4, 'adding new income', '2022-02-23 18:20:11', 14),
+(5, 'adding new income', '2022-02-23 18:20:56', 14),
+(6, 'adding new income', '2022-02-23 18:22:24', 14),
+(7, 'adding new expenditure type', '2022-02-23 18:36:38', 14),
+(8, 'adding new expenditure type', '2022-02-23 18:37:08', 14),
+(9, 'Commit expenditure of amount Tsh.100000/=', '2022-02-23 18:37:54', 14);
 
 -- --------------------------------------------------------
 
@@ -505,15 +385,6 @@ CREATE TABLE `tbl_mantainance_service` (
   `date` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Dumping data for table `tbl_mantainance_service`
---
-
-INSERT INTO `tbl_mantainance_service` (`mantainance_service_id`, `mantainance`, `service`, `date`) VALUES
-(1, 9, 2, '2022-02-09 22:33:42'),
-(2, 17, 1, '2022-02-09 22:47:42'),
-(3, 17, 2, '2022-02-09 22:47:42');
-
 -- --------------------------------------------------------
 
 --
@@ -524,15 +395,6 @@ CREATE TABLE `tbl_service` (
   `service_id` int(11) NOT NULL,
   `service_name` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `tbl_service`
---
-
-INSERT INTO `tbl_service` (`service_id`, `service_name`) VALUES
-(1, 'change oil'),
-(2, 'coloring'),
-(5, 'fuel');
 
 -- --------------------------------------------------------
 
@@ -583,13 +445,6 @@ CREATE TABLE `vehicle` (
   `fuel_type` int(11) NOT NULL,
   `route_name` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `vehicle`
---
-
-INSERT INTO `vehicle` (`veh_id`, `plate_no`, `veh_type`, `chesisno`, `brand`, `veh_color`, `veh_regdate`, `veh_description`, `veh_photo`, `veh_available`, `no_passengers`, `eng_capacity`, `fuel_type`, `route_name`) VALUES
-(2, 'T 122 DSC', 'COSTA', '3434', 1, 'GREEN', '2021-07-16 10:03:24', 'For my son luggie', 'mulogo.png', 1, 12, 1, 2, 2);
 
 -- --------------------------------------------------------
 
@@ -671,7 +526,8 @@ ALTER TABLE `tbl_account_credit`
 --
 ALTER TABLE `tbl_account_summary`
   ADD PRIMARY KEY (`summary_id`),
-  ADD KEY `account_summary_userFK` (`created_by`);
+  ADD KEY `account_summary_userFK` (`created_by`),
+  ADD KEY `account_summary_fk` (`account`);
 
 --
 -- Indexes for table `tbl_expenditure`
@@ -758,109 +614,109 @@ ALTER TABLE `vehicle`
 -- AUTO_INCREMENT for table `admin`
 --
 ALTER TABLE `admin`
-  MODIFY `admin_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `admin_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `car_brand`
 --
 ALTER TABLE `car_brand`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `car_capacity`
 --
 ALTER TABLE `car_capacity`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `driver`
 --
 ALTER TABLE `driver`
-  MODIFY `driverid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `driverid` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `fuel_type`
 --
 ALTER TABLE `fuel_type`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `mantainance`
 --
 ALTER TABLE `mantainance`
-  MODIFY `mant_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `mant_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `route`
 --
 ALTER TABLE `route`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `tbl_account_chart`
 --
 ALTER TABLE `tbl_account_chart`
-  MODIFY `acount_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `acount_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `tbl_account_credit`
 --
 ALTER TABLE `tbl_account_credit`
-  MODIFY `credit_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `credit_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `tbl_account_summary`
 --
 ALTER TABLE `tbl_account_summary`
-  MODIFY `summary_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `summary_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `tbl_expenditure`
 --
 ALTER TABLE `tbl_expenditure`
-  MODIFY `exp_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
+  MODIFY `exp_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `tbl_expenditure_logs`
 --
 ALTER TABLE `tbl_expenditure_logs`
-  MODIFY `expenditure_logs_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
+  MODIFY `expenditure_logs_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `tbl_expenditure_type`
 --
 ALTER TABLE `tbl_expenditure_type`
-  MODIFY `expenditure_type_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `expenditure_type_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `tbl_income`
 --
 ALTER TABLE `tbl_income`
-  MODIFY `income_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `income_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `tbl_income_list`
 --
 ALTER TABLE `tbl_income_list`
-  MODIFY `income_list_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `income_list_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `tbl_logs`
 --
 ALTER TABLE `tbl_logs`
-  MODIFY `log_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=118;
+  MODIFY `log_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `tbl_mantainance_service`
 --
 ALTER TABLE `tbl_mantainance_service`
-  MODIFY `mantainance_service_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `mantainance_service_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `tbl_service`
 --
 ALTER TABLE `tbl_service`
-  MODIFY `service_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `service_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `user`
@@ -872,7 +728,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `vehicle`
 --
 ALTER TABLE `vehicle`
-  MODIFY `veh_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `veh_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- Constraints for dumped tables
@@ -919,6 +775,7 @@ ALTER TABLE `tbl_account_credit`
 -- Constraints for table `tbl_account_summary`
 --
 ALTER TABLE `tbl_account_summary`
+  ADD CONSTRAINT `account_summary_fk` FOREIGN KEY (`account`) REFERENCES `tbl_account_credit` (`credit_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `account_summary_userFK` FOREIGN KEY (`created_by`) REFERENCES `user` (`user_id`) ON UPDATE CASCADE;
 
 --
