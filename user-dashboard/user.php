@@ -1,3 +1,4 @@
+<?php $title = "Mercy" ?>
 <?php include('includes/sidebar.php'); ?>
 <div class="main_container">
 
