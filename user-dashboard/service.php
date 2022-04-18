@@ -77,11 +77,11 @@
                                         <i class="fas fa-eye"></i>
                                     </button> -->
                                     <button class="btn text-warning btn-sm btn-circle shadow-sm" data-toggle="modal"
-                                        data-target="#edit<?php echo $service_row['mant_id'] ?>">
+                                        data-target="#edit<?php echo $service_row['service_id'] ?>">
                                         <b><i class="fas fa-pencil-alt fa-lg"></i></b>
                                     </button>
                                     <a type="button" class="btn text-danger btn-sm btn-circle shadow-sm" data-toggle="modal"
-                                        data-target="#delete<?php echo $service_row['mant_id'] ?>">
+                                        data-target="#delete<?php echo $service_row['service_id'] ?>">
                                         <i class="fas fa-trash fa-lg"></i>
                                     </a>
                                 </td>

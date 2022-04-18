@@ -1,22 +1,22 @@
- <!-- edit mantainance modal -->
+ <!-- edit service modal -->
  <div class="modal fade" id="edit<?php echo $mantainance_row['service_id'] ?>" tabindex="-1" role="dialog"
-     aria-labelledby="#edit_mant" aria-hiden="true">
+     aria-labelledby="#service_id" aria-hiden="true">
      <div class="modal-dialog" role="document">
          <div class="modal-content">
              <div class="modal-header kvm-bg">
-                 <h3 class="modal-title text-white" id="edit_mant">Edit Mantainance</h3>
+                 <h3 class="modal-title text-white" id="service_id">Edit Service</h3>
                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                      <span aria-hidden="true" class="text-white">&times;</span>
                  </button>
              </div>
-             <form action="crude_mantainance_logic.php" method="POST" enctype="multipart/form-data">
+             <form action="crude_service_logic.php" method="POST" enctype="multipart/form-data">
                  <div class="modal-body">
-                     <input hidden type="number" name="id" value="<?php echo $mantainance_row['service_id'] ?>">
+                     <input hidden type="number" name="id" value="<?php echo $service_row['service_id'] ?>">
                      <div class="row">
                          <div class="col-xl-12">
                              <select name="vehicle" class="form-control">
-                                 <option value="<?php echo $mantainance_row['veh_id'] ?>">
-                                     <?php echo $mantainance_row['plate_no'] ?></option>
+                                 <option value="<?php echo $service_row['veh_id'] ?>">
+                                     <?php echo $service_row['plate_no'] ?></option>
                                  <!-- Attempt select query execution -->
                                  <?php
                                     $vehicle = mysqli_query($conn, "SELECT * FROM vehicle");
@@ -30,21 +30,21 @@
                      </div>
                      <div class="row mt-3">
                          <div class="col-xl-12">
-                             <input type="text" name="garage" value="<?php echo $mantainance_row['service_name'] ?>"
+                             <input type="text" name="sservice_name" value="<?php echo $service_row['service_name'] ?>"
                                  class="form-control" placeholder="Name">
                          </div>
                      </div>
                      <div class="row mt-3">
                          <div class="col-xl-12">
-                             <input type="number" name="amount" value="<?php echo $mantainance_row['service_price'] ?>"
-                                 class="form-control" placeholder="amount">
+                             <input type="number" name="service_price" value="<?php echo $service_row['service_price'] ?>"
+                                 class="form-control" placeholder="service_price">
                          </div>
                      </div>
                      <div class="row mt-3">
                          <div class="col-xl-12">
                              <div class="form-group">
-                                 <textarea type="text" rows="4" name="description" class="form-control"
-                                     placeholder="Description"><?php echo $mantainance_row['service_description'] ?></textarea>
+                                 <textarea type="text" rows="4" name="service_description" class="form-control"
+                                     placeholder="Description"><?php echo $service_row['service_description'] ?></textarea>
                              </div>
                          </div>
                      </div>
