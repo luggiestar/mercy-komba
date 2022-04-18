@@ -1,3 +1,4 @@
+<?php $title = "Vehicle Brand" ?> 
 <?php include('includes/sidebar.php'); ?>
 <div class="main_container">
     <?php

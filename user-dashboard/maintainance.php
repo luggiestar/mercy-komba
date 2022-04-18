@@ -28,9 +28,9 @@
                     <div></div>
             
                     <div class="d-flex">
-                        <button class="d-none d-sm-inline-block  btn vms-btn btn-sm shadow-sm" data-toggle="modal" data-target="#service-modal">
+                        <!-- <button class="d-none d-sm-inline-block  btn vms-btn btn-sm shadow-sm" data-toggle="modal" data-target="#service-modal">
                             Service <i class="fa fa-plus-circle fa-sm"></i> 
-                        </button>
+                        </button> -->
 
                         <button class="d-none d-sm-inline-block btn vms-btn btn-sm shadow-sm ml-3" data-toggle="modal" data-target="#mantainance">
                             Mantainance <i class="fa fa-plus-circle fa-sm"></i>
@@ -48,7 +48,7 @@
                                 <th>amount</th>
                                 <th>date</th>
                                 <th>Description</th>
-                                <th>Services</th>
+                                <!-- <th>Services</th> -->
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -72,14 +72,14 @@
                                 <td><?php echo $mantainance_row['amount'] ?></td>
                                 <td><?php echo $mantainance_row['date_mant'] ?></td>
                                 <td><?php echo $mantainance_row['description'] ?></td>
-                                <td>
-                                    <?php foreach($services_list as $services_list_item): ?>
-                                        <span class="badge bg-danger text-white"><?php echo $services_list_item['service_name'] ?></span>
-                                    <?php endforeach ?>   
-                                </td>
+                                <!-- <td>
+                                    php foreach($services_list as $services_list_item): ?>
+                                        <span class="badge bg-danger text-white"><php echo $services_list_item['service_name'] ?></span>
+                                    php endforeach ?>   
+                                </td> -->
                                 <td>
                                     <!-- <button class="btn btn-dark btn-sm btn-circle shadow-sm" data-toggle="modal"
-                                        data-target="#view_vehicle<?php echo $mantainance_row['plate_no'] ?>">
+                                        data-target="#view_vehicle php echo $mantainance_row['plate_no'] ?>">
                                         <i class="fas fa-eye"></i>
                                     </button> -->
                                     <button class="btn text-warning btn-sm btn-circle shadow-sm" data-toggle="modal"
@@ -103,4 +103,4 @@
 </div>
 <?php include('includes/footer.php'); ?>
 <?php include('modals/mantainance_modal.php'); ?>
-<?php include('modals/service-modal.php'); ?>
+<!-- <php include('modals/service-modal.php'); ?> -->

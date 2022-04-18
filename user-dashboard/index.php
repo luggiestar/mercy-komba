@@ -201,12 +201,12 @@
                                 $expenditure_type_log_list = $expenditure_type_log->fetchAll(PDO::FETCH_ASSOC);
                             ?>
                             <tr>
-                                <td><?php echo $exipanditure_item['expenditure_amount'] ?></td>
                                 <td>
                                     <?php foreach($expenditure_type_log_list as $e_t_value): ?>
                                         <span class="badge bg-success text-white"><?php echo $e_t_value['expenditure_type_name'] ?></span>
                                     <?php endforeach ?>    
                                 </td>
+                                <td><?php echo $exipanditure_item['expenditure_amount'] ?></td>
                             </tr>
                         <?php endforeach ?>
                     </table>

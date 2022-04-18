@@ -76,7 +76,7 @@ if (isset($_POST['add_vehicle'])) {
                 $_SESSION['success'] = "Vehicle Created Successfully";
                 header('location:vehicle.php');
             } else {
-                $_SESSION['success'] = "Something went wrong. Please try again";
+                $_SESSION['error'] = "Something went wrong. Please try again";
                 header('location:vehicle.php');
             }
         }

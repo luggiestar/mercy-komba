@@ -188,16 +188,20 @@
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#carcomponent"
                     aria-expanded="true" aria-controls="carcomponent">
                     <i class="fas fa-fw fa-bus"></i>
-                    <span>  Vehicle Management  </span>
+                    <span>  Vehicle Expenses  </span>
                 </a>
                 <div id="carcomponent" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Vehicles:</h6>
                         <a class="collapse-item" href="vehicle.php">
-                            <i class="fas fa-fw fa-car text-danger"></i> vehicle
+                            <i class="fas fa-fw fa-car text-danger"></i>Vehicle
+                        </a>
+                        <!-- <h6 class="collapse-header">Services:</h6> -->
+                        <a class="collapse-item" href="service.php">
+                             <i class="fas fa-fw fa-garage text-danger"></i>Vehicle Services
                         </a>
                         <a class="collapse-item" href="maintainance.php">
-                            <i class="fas fa-fw fa-wrench text-danger"></i> Maintainance
+                            <i class="fas fa-fw fa-wrench text-danger"></i>Vehicle Maintainance
                         </a>
                         <h6 class="collapse-header">Car Components:</h6>
                         <a class="collapse-item" href="brand.php">
@@ -315,7 +319,7 @@
                               
                                 </span>
                                 <img class="img-profile rounded-circle"
-                                    src="img/undraw_profile.svg">
+                                    src="img/1.jfif">
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"

@@ -22,7 +22,7 @@
  		max-width: 100%;
  	}
  	.round-img {
- 		border-radius: 50%;
+ 		border-radius: 20%;
  		width: 100px;
  		height: 100px;
  		background: white;
@@ -37,7 +37,7 @@
 			<div class="card">
 				<div class="card-header bg-danger">
 					<div class="round-img">
-						<img src="img/undraw_profile.svg" class="profile-picture">
+						<img src="img/1.jfif" class="profile-picture">
 					</div>
 				</div>
 				<div class="card-body">

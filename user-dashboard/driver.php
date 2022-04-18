@@ -1,3 +1,4 @@
+<?php $title = "driver" ?>
 <?php include('includes/sidebar.php'); ?>
 <div class="main_container">
     <?php
@@ -10,7 +11,7 @@
 
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3 mb-0 text-gray-800">Mantainance</h1>
+        <h1 class="h3 mb-0 text-gray-800">Driver records</h1>
         <button class="d-none d-sm-inline-block btn vms-btn btn-sm shadow-sm" data-toggle="modal"
             data-target="#driver">Add New
             driver <i class="fa fa-plus fa-sm"></i> </button>

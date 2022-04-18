@@ -33,8 +33,8 @@
                             <tr>
                                 <th>S/N</th>
                                 <th>Account Name</th>
-                                <th>Date Registered</th>
-                                <th>Creater</th>
+                                <th>Registered Date</th>
+                                <th>Creator</th>
                             </tr>
                         </thead>
                         <tbody>
